@@ -4,6 +4,7 @@ export const useScrollAnimation = (ref: RefObject<HTMLElement>) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    const element = ref.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -13,13 +14,13 @@ export const useScrollAnimation = (ref: RefObject<HTMLElement>) => {
       { threshold: 0.1 }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (element) {
+      observer.observe(element);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (element) {
+        observer.unobserve(element);
       }
     };
   }, [ref]);

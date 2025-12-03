@@ -34,8 +34,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          whileFocus={{ scale: 1.01 }}
-          {...props}
+          animate={{ scale: isFocused ? 1.01 : 1 }}
+          type={props.type}
+          value={props.value}
+          onChange={props.onChange}
+          placeholder={props.placeholder}
+          required={props.required}
         />
         {error && (
           <motion.p

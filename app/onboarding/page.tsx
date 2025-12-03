@@ -17,7 +17,7 @@ export default function Onboarding() {
     monthlyExpenses: 0,
   });
   const router = useRouter();
-  const { user } = useStore();
+  const { setUser } = useStore();
 
   const handleSubmit = async () => {
     const token = localStorage.getItem('token');

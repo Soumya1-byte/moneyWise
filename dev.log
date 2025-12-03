@@ -16,3 +16,7 @@
  GET /learn 200 in 437ms
  ✓ Compiled /favicon.ico in 101ms (732 modules)
  GET /favicon.ico 200 in 156ms
+ GET /learn 200 in 56ms
+ GET /favicon.ico 200 in 6ms
+ GET /learn 200 in 29ms
+ GET /favicon.ico 200 in 10ms

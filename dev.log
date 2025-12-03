@@ -2,3 +2,10 @@
 > moneywise@1.0.0 dev
 > next dev
 
+   ▲ Next.js 15.1.4
+   - Local:        http://localhost:3000
+   - Network:      http://10.73.19.149:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1539ms

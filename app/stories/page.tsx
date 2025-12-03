@@ -7,7 +7,7 @@ import Button from '@/components/ui/Button';
 import { stories } from '@/data/stories';
 
 export default function Stories() {
-  const [selected, setSelected] = useState<any>(null);
+  const [selected, setSelected] = useState<typeof stories[0] | null>(null);
 
   if (selected) {
     return (
@@ -61,7 +61,7 @@ export default function Stories() {
       <Navbar />
       <div className="max-w-7xl mx-auto p-4 md:p-8">
         <h1 className="text-3xl font-bold mb-2">Real Stories 📖</h1>
-        <p className="text-gray-600 mb-8">Learn from others' financial mistakes</p>
+        <p className="text-gray-600 mb-8">Learn from others&apos; financial mistakes</p>
         <div className="grid md:grid-cols-2 gap-6">
           {stories.map((story) => (
             <Card key={story.id} onClick={() => setSelected(story)} className="hover:scale-105 transition-transform">

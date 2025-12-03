@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     await user.save();
 
     return NextResponse.json({ expenses: user.expenses });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to add expense' }, { status: 500 });
   }
 }
@@ -44,7 +44,7 @@ export async function GET(req: Request) {
     }
 
     return NextResponse.json({ expenses: user.expenses });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to fetch expenses' }, { status: 500 });
   }
 }

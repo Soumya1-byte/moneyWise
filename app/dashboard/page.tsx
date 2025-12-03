@@ -36,7 +36,7 @@ export default function Dashboard() {
     };
     if (!user) fetchUser();
     setTip(dailyTips[Math.floor(Math.random() * dailyTips.length)]);
-  }, []);
+  }, [user, router, setUser]);
 
   if (!user) {
     return (
@@ -72,7 +72,7 @@ export default function Dashboard() {
             <h1 className="text-4xl md:text-5xl font-bold text-navy mb-2 font-heading">
               Welcome back, {user.name}
             </h1>
-            <p className="text-navy/60 text-lg">Let's continue your financial learning journey</p>
+            <p className="text-navy/60 text-lg">Let&apos;s continue your financial learning journey</p>
           </motion.div>
 
           {/* Stats Grid */}

@@ -1,35 +1,48 @@
 {
   "name": "moneywise",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Financial literacy web application for beginners",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint"
   },
   "dependencies": {
-    "bcryptjs": "^3.0.3",
+    "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.2",
-    "lucide-react": "^0.555.0",
-    "mongoose": "^9.0.0",
-    "next": "16.0.6",
-    "next-auth": "^4.24.13",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "recharts": "^3.5.1",
-    "zustand": "^5.0.9"
+    "lucide-react": "^0.462.0",
+    "mongoose": "^8.8.4",
+    "next": "15.1.4",
+    "next-auth": "^4.24.11",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "recharts": "^2.15.0",
+    "zustand": "^5.0.2"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/postcss": "^4.0.0",
     "@types/bcryptjs": "^2.4.6",
-    "@types/jsonwebtoken": "^9.0.10",
+    "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.0.6",
-    "tailwindcss": "^4",
+    "eslint-config-next": "15.1.4",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "keywords": [
+    "financial-literacy",
+    "money-management",
+    "investing",
+    "education",
+    "nextjs"
+  ],
+  "author": "Soumya",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Soumya1-byte/moneyWise.git"
   }
 }

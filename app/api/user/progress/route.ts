@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     await user.save();
 
     return NextResponse.json({ progress: user.progress });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to update progress' }, { status: 500 });
   }
 }

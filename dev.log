@@ -30,3 +30,4 @@
  GET /learn 200 in 22ms
  GET /favicon.ico 200 in 8ms
  ✓ Compiled in 229ms (693 modules)
+ ✓ Compiled in 553ms (1031 modules)

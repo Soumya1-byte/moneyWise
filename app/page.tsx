@@ -175,7 +175,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {isLogin ? "Don't have an account? Sign up" : 'Already have an account? Login'}
+                {isLogin ? "Don&apos;t have an account? Sign up" : 'Already have an account? Login'}
               </motion.button>
             </div>
           </Card>

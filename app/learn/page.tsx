@@ -1,21 +1,21 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 import Navbar from '@/components/layout/Navbar';
-import Card from '@/components/ui/Card';
+import LessonCard from '@/components/molecules/LessonCard';
+import PageTransition from '@/components/animations/PageTransition';
 import { lessons } from '@/data/lessons';
 import { useStore } from '@/store/useStore';
+import { staggerContainer, fadeInUp } from '@/lib/utils/animations';
 
 export default function Learn() {
   const router = useRouter();
   const { user } = useStore();
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      <div className="max-w-7xl mx-auto p-4 md:p-8">
-        <h1 className="text-3xl font-bold mb-2">Learning Modules 📚</h1>
-        <p className="text-gray-600 mb-8">Start from basics or jump to any topic</p>
+    <PageTransition>
+      <div className="min-h-screen bg-gradient-to-br from-cream via-cream-light to-white">
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {lessons.map((module) => {

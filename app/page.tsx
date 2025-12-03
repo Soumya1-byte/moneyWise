@@ -47,7 +47,7 @@ export default function Home() {
       } else {
         router.push('/dashboard');
       }
-    } catch (err) {
+    } catch {
       setError('Network error. Please try again.');
       setLoading(false);
     }

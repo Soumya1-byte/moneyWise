@@ -11,7 +11,7 @@ import { useStore } from '@/store/useStore';
 export default function Quiz() {
   const router = useRouter();
   const { user } = useStore();
-  const [activeQuiz, setActiveQuiz] = useState<any>(null);
+  const [activeQuiz, setActiveQuiz] = useState<typeof quizzes[0] | null>(null);
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [showResult, setShowResult] = useState(false);
@@ -31,7 +31,8 @@ export default function Quiz() {
   };
 
   const submitQuiz = async () => {
-    const correct = answers.filter((a, i) => a === activeQuiz.questions[i].correct).length;
+    if (!activeQuiz) return;
+    answers.filter((a, i) => a === activeQuiz.questions[i].correct).length;
     const token = localStorage.getItem('token');
     await fetch('/api/user/progress', {
       method: 'POST',

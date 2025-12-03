@@ -44,8 +44,9 @@ export async function POST(req: Request) {
         onboarding: user.onboarding
       } 
     });
-  } catch (error: any) {
-    console.error('Registration error:', error);
+  } catch (err) {
+    console.error('Registration error:', err);
+    const error = err as Error;
     return NextResponse.json({ 
       error: error.message || 'Registration failed',
       details: process.env.NODE_ENV === 'development' ? error.toString() : undefined

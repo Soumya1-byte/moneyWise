@@ -32,16 +32,12 @@ const Card = ({
     lg: 'p-8',
   };
 
-  const hoverAnimation = hover ? {
-    whileHover: { y: -4, scale: 1.01 },
-    transition: { type: 'spring', stiffness: 400, damping: 17 }
-  } : {};
-
   return (
     <motion.div
       className={cn(baseStyles, variants[variant], paddings[padding], className)}
-      {...hoverAnimation}
-      {...props}
+      whileHover={hover ? { y: -4, scale: 1.01 } : undefined}
+      transition={hover ? { type: 'spring', stiffness: 400, damping: 17 } : undefined}
+      onClick={props.onClick}
     >
       {children}
     </motion.div>

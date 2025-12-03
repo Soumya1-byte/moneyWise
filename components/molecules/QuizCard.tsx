@@ -32,21 +32,39 @@ const QuizCard = ({
 }: QuizCardProps) => {
   return (
     <Link href={`/quiz/${id}`}>
-      <Card className={cn('group cursor-pointer relative', className)}>
+      <Card 
+        className={cn('group cursor-pointer relative overflow-hidden', className)}
+        hover={true}
+        glowEffect={!completed}
+      >
         <div className="flex items-start gap-4">
-          <IconWrapper src={icon} alt={title} size="lg" />
+          <motion.div
+            whileHover={{ scale: 1.05, rotate: 5 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+          >
+            <IconWrapper src={icon} alt={title} size="lg" animate={true} />
+          </motion.div>
           
           <div className="flex-1">
             <div className="flex items-start justify-between mb-2">
-              <h3 className="text-lg font-semibold text-navy group-hover:text-money-green transition-colors">
+              <h3 className="text-lg md:text-xl font-bold text-navy group-hover:text-money-green transition-colors duration-200">
                 {title}
               </h3>
-              {completed && <span className="text-2xl">✓</span>}
+              {completed && (
+                <motion.span 
+                  className="text-green-500 text-xl"
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 15 }}
+                >
+                  ✓
+                </motion.span>
+              )}
             </div>
             
             <p className="text-sm text-navy/70 mb-3">{description}</p>
             
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <Badge variant="info" size="sm">
                 {questions} questions
               </Badge>
@@ -55,24 +73,17 @@ const QuizCard = ({
               </Badge>
               {completed && score !== undefined && (
                 <Badge variant="warning" size="sm">
-                  Score: {score}%
+                  {score}%
                 </Badge>
               )}
             </div>
           </div>
         </div>
 
-        {/* Completion overlay */}
-        {completed && (
-          <motion.div
-            className="absolute top-2 right-2 w-8 h-8 bg-money-green rounded-full flex items-center justify-center text-white"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: 'spring', stiffness: 500, damping: 15 }}
-          >
-            ✓
-          </motion.div>
-        )}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-money-green/0 via-money-green/5 to-money-green/0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+          initial={false}
+        />
       </Card>
     </Link>
   );

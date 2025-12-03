@@ -34,7 +34,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         whileTap={{ scale: disabled ? 1 : 0.98 }}
         className={cn(baseStyles, variants[variant], sizes[size], className)}
         disabled={disabled || isLoading}
-        {...props}
+        type={props.type}
+        onClick={props.onClick}
       >
         {isLoading ? (
           <span className="flex items-center justify-center">

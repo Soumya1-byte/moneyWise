@@ -15,7 +15,7 @@ export default function ModulePage() {
   const [selectedLesson, setSelectedLesson] = useState<typeof module.lessons[0] | null>(null);
 
   const moduleData = lessons.find(m => m.id === params.moduleId);
-  if (!module) return <div>Module not found</div>;
+  if (!moduleData) return <div>Module not found</div>;
 
   const completeLesson = async (lessonId: string, xp: number) => {
     const token = localStorage.getItem('token');
@@ -55,11 +55,11 @@ export default function ModulePage() {
       <Navbar />
       <div className="max-w-7xl mx-auto p-4 md:p-8">
         <Button variant="secondary" onClick={() => router.push('/learn')} className="mb-4">← Back to Modules</Button>
-        <h1 className="text-3xl font-bold mb-2">{module.icon} {module.title}</h1>
-        <p className="text-gray-600 mb-8">{module.description}</p>
+        <h1 className="text-3xl font-bold mb-2">{moduleData.icon} {moduleData.title}</h1>
+        <p className="text-gray-600 mb-8">{moduleData.description}</p>
 
         <div className="space-y-4">
-          {module.lessons.map((lesson, idx) => {
+          {moduleData.lessons.map((lesson, idx) => {
             const isCompleted = user?.progress?.completedLessons?.includes(lesson.id);
             return (
               <Card key={lesson.id} onClick={() => setSelectedLesson(lesson)} className="hover:shadow-lg transition-shadow">

@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useStore } from '@/store/useStore';
 import Button from '@/components/ui/Button';
 
 export default function Onboarding() {

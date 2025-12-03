@@ -2,10 +2,15 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 import { useStore } from '@/store/useStore';
 import Navbar from '@/components/layout/Navbar';
-import Card from '@/components/ui/Card';
+import Card from '@/components/atoms/Card';
+import StatBox from '@/components/molecules/StatBox';
+import IconWrapper from '@/components/atoms/IconWrapper';
+import PageTransition from '@/components/animations/PageTransition';
 import { dailyTips } from '@/data/tips';
+import { staggerContainer, fadeInUp } from '@/lib/utils/animations';
 
 export default function Dashboard() {
   const { user, setUser } = useStore();
@@ -33,64 +38,134 @@ export default function Dashboard() {
     setTip(dailyTips[Math.floor(Math.random() * dailyTips.length)]);
   }, []);
 
-  if (!user) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  if (!user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-cream">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+          className="w-16 h-16 border-4 border-money-green border-t-transparent rounded-full"
+        />
+      </div>
+    );
+  }
+
+  const quickActions = [
+    { icon: '/assets/lessons.png', title: 'Continue Learning', desc: 'Explore lessons on money, investing, and more', path: '/learn' },
+    { icon: '/assets/quiz.png', title: 'Take a Quiz', desc: 'Test your knowledge and earn XP', path: '/quiz' },
+    { icon: '/assets/budget-planner.png', title: 'Use Tools', desc: 'Budget planner, expense tracker, and more', path: '/tools' },
+    { icon: '/assets/warning.png', title: 'Read Stories', desc: 'Learn from real financial mistakes', path: '/stories' },
+  ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      <div className="max-w-7xl mx-auto p-4 md:p-8">
-        <h1 className="text-3xl font-bold mb-2">Welcome back, {user.name}! 👋</h1>
-        <p className="text-gray-600 mb-8">Let's continue your financial learning journey</p>
+    <PageTransition>
+      <div className="min-h-screen bg-gradient-to-br from-cream via-cream-light to-white">
+        <Navbar />
+        
+        <div className="max-w-7xl mx-auto p-4 md:p-8">
+          {/* Welcome Header */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-12"
+          >
+            <h1 className="text-4xl md:text-5xl font-bold text-navy mb-2 font-heading">
+              Welcome back, {user.name}
+            </h1>
+            <p className="text-navy/60 text-lg">Let's continue your financial learning journey</p>
+          </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
-          <Card className="bg-gradient-to-br from-green-500 to-green-600 text-white">
-            <div className="text-sm opacity-90">Your Level</div>
-            <div className="text-4xl font-bold my-2">{user.progress?.level || 1}</div>
-            <div className="text-sm opacity-90">{user.progress?.xp || 0} XP</div>
-          </Card>
-          <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white">
-            <div className="text-sm opacity-90">Completed Lessons</div>
-            <div className="text-4xl font-bold my-2">{user.progress?.completedLessons?.length || 0}</div>
-          </Card>
-          <Card className="bg-gradient-to-br from-yellow-500 to-yellow-600 text-white">
-            <div className="text-sm opacity-90">Badges Earned</div>
-            <div className="text-4xl font-bold my-2">{user.progress?.badges?.length || 0}</div>
-          </Card>
-        </div>
+          {/* Stats Grid */}
+          <motion.div
+            className="grid md:grid-cols-3 gap-6 mb-12"
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+          >
+            <motion.div variants={fadeInUp}>
+              <StatBox
+                icon="/assets/level.png"
+                label="Your Level"
+                value={user.progress?.level || 1}
+                trend="up"
+                trendValue="+2 this week"
+              />
+            </motion.div>
+            <motion.div variants={fadeInUp}>
+              <StatBox
+                icon="/assets/xp.png"
+                label="Total XP"
+                value={user.progress?.xp || 0}
+                suffix=" XP"
+              />
+            </motion.div>
+            <motion.div variants={fadeInUp}>
+              <StatBox
+                icon="/assets/badge.png"
+                label="Badges Earned"
+                value={user.progress?.badges?.length || 0}
+              />
+            </motion.div>
+          </motion.div>
 
-        <Card className="mb-8 bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-200">
-          <div className="flex items-start space-x-3">
-            <span className="text-3xl">💡</span>
-            <div>
-              <h3 className="font-bold text-lg mb-1">Daily Tip</h3>
-              <p className="text-gray-700">{tip}</p>
+          {/* Daily Tip */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3 }}
+            className="mb-12"
+          >
+            <Card 
+              variant="glass" 
+              className="bg-gradient-to-r from-accent-yellow/20 to-accent-yellow-light/20 border-2 border-accent-yellow/30"
+            >
+              <div className="flex items-start gap-4">
+                <IconWrapper src="/assets/lightbulb.png" alt="Daily Tip" size="lg" />
+                <div>
+                  <h3 className="font-bold text-xl mb-2 text-navy">Daily Financial Tip</h3>
+                  <p className="text-navy/80 leading-relaxed">{tip}</p>
+                </div>
+              </div>
+            </Card>
+          </motion.div>
+
+          {/* Quick Actions */}
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+          >
+            <h2 className="text-2xl font-bold text-navy mb-6 font-heading">Quick Actions</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {quickActions.map((action, i) => (
+                <motion.div key={i} variants={fadeInUp}>
+                  <Card
+                    onClick={() => router.push(action.path)}
+                    className="cursor-pointer group"
+                  >
+                    <div className="flex items-start gap-4">
+                      <IconWrapper src={action.icon} alt={action.title} size="lg" />
+                      <div className="flex-1">
+                        <h3 className="text-xl font-semibold mb-2 text-navy group-hover:text-money-green transition-colors">
+                          {action.title}
+                        </h3>
+                        <p className="text-navy/60">{action.desc}</p>
+                      </div>
+                      <motion.span
+                        className="text-money-green text-2xl"
+                        animate={{ x: [0, 4, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        →
+                      </motion.span>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
             </div>
-          </div>
-        </Card>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          <Card onClick={() => router.push('/learn')} className="hover:scale-105 transition-transform">
-            <div className="text-4xl mb-3">📚</div>
-            <h3 className="text-xl font-bold mb-2">Continue Learning</h3>
-            <p className="text-gray-600">Explore lessons on money, investing, and more</p>
-          </Card>
-          <Card onClick={() => router.push('/quiz')} className="hover:scale-105 transition-transform">
-            <div className="text-4xl mb-3">🧠</div>
-            <h3 className="text-xl font-bold mb-2">Take a Quiz</h3>
-            <p className="text-gray-600">Test your knowledge and earn XP</p>
-          </Card>
-          <Card onClick={() => router.push('/tools')} className="hover:scale-105 transition-transform">
-            <div className="text-4xl mb-3">🛠️</div>
-            <h3 className="text-xl font-bold mb-2">Use Tools</h3>
-            <p className="text-gray-600">Budget planner, expense tracker, and more</p>
-          </Card>
-          <Card onClick={() => router.push('/stories')} className="hover:scale-105 transition-transform">
-            <div className="text-4xl mb-3">📖</div>
-            <h3 className="text-xl font-bold mb-2">Read Stories</h3>
-            <p className="text-gray-600">Learn from real financial mistakes</p>
-          </Card>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </PageTransition>
   );
 }

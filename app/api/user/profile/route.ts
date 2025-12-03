@@ -19,7 +19,7 @@ export async function GET(req: Request) {
     }
 
     return NextResponse.json({ user });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to fetch profile' }, { status: 500 });
   }
 }
@@ -38,7 +38,7 @@ export async function PUT(req: Request) {
     const user = await User.findByIdAndUpdate(decoded.userId, updates, { new: true }).select('-password');
 
     return NextResponse.json({ user });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to update profile' }, { status: 500 });
   }
 }

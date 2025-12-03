@@ -2,55 +2,59 @@
 
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils/cn';
-import { InputHTMLAttributes, forwardRef, useState } from 'react';
+import { InputHTMLAttributes, forwardRef } from 'react';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
+  icon?: React.ReactNode;
+  variant?: 'default' | 'minimal';
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, label, error, ...props }, ref) => {
-    const [isFocused, setIsFocused] = useState(false);
+  ({ className, label, error, icon, variant = 'default', ...props }, ref) => {
+    const baseStyles = 'w-full px-4 py-3 rounded-xl font-body transition-all duration-200 focus:outline-none';
+    
+    const variants = {
+      default: 'bg-cream/50 border-2 border-cream-dark/30 text-navy placeholder:text-navy/40 focus:border-money-green focus:bg-white focus:shadow-glow-green',
+      minimal: 'bg-transparent border-b-2 border-navy/20 text-navy placeholder:text-navy/40 focus:border-money-green',
+    };
 
     return (
-      <div className="w-full">
+      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
         {label && (
-          <motion.label
-            className="block text-sm font-medium text-navy mb-2"
-            animate={{ color: isFocused ? '#00C46A' : '#0A1A2F' }}
-          >
+          <label className="block text-sm font-semibold text-navy mb-2">
             {label}
-          </motion.label>
+          </label>
         )}
-        <motion.input
-          ref={ref}
-          className={cn(
-            'w-full px-4 py-3 rounded-xl border-2 transition-all duration-200',
-            'focus:outline-none focus:ring-2 focus:ring-money-green/20 focus:border-money-green',
-            'placeholder:text-silver',
-            error ? 'border-red-500' : 'border-cream-dark',
-            className
+        <div className="relative">
+          {icon && (
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-navy/50">
+              {icon}
+            </div>
           )}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          animate={{ scale: isFocused ? 1.01 : 1 }}
-          type={props.type}
-          value={props.value}
-          onChange={props.onChange}
-          placeholder={props.placeholder}
-          required={props.required}
-        />
+          <input
+            ref={ref}
+            className={cn(
+              baseStyles,
+              variants[variant],
+              icon && 'pl-10',
+              error && 'border-red-500 focus:border-red-500 focus:shadow-none',
+              className
+            )}
+            {...props}
+          />
+        </div>
         {error && (
           <motion.p
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-red-500 text-sm mt-1"
+            className="text-sm text-red-500 mt-2 font-medium"
           >
             {error}
           </motion.p>
         )}
-      </div>
+      </motion.div>
     );
   }
 );

@@ -12,10 +12,10 @@ export default function ModulePage() {
   const params = useParams();
   const router = useRouter();
   const { user } = useStore();
+  const [selectedLesson, setSelectedLesson] = useState<any>(null);
+  
   const moduleData = lessons.find(m => m.id === params.moduleId);
   if (!moduleData) return <div>Module not found</div>;
-  
-  const [selectedLesson, setSelectedLesson] = useState<typeof moduleData.lessons[0] | null>(null);
 
   const completeLesson = async (lessonId: string, xp: number) => {
     const token = localStorage.getItem('token');

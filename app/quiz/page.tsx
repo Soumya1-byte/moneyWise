@@ -32,7 +32,6 @@ export default function Quiz() {
 
   const submitQuiz = async () => {
     if (!activeQuiz) return;
-    answers.filter((a, i) => a === activeQuiz.questions[i].correct).length;
     const token = localStorage.getItem('token');
     await fetch('/api/user/progress', {
       method: 'POST',

@@ -1,0 +1,228 @@
+export const quizzes = [
+  {
+    id: 'money-basics-quiz',
+    moduleId: 'money-basics',
+    title: 'Money Basics Quiz',
+    questions: [
+      {
+        id: 'q1',
+        question: 'What is an Emergency Fund?',
+        options: [
+          'Money for shopping during sales',
+          'Money saved for unexpected problems',
+          'Money for investing in stocks',
+          'Money for vacation',
+        ],
+        correct: 1,
+        explanation: 'Emergency fund is money you save for unexpected situations like job loss, medical emergencies, or urgent repairs. It should cover 3-6 months of expenses.',
+      },
+      {
+        id: 'q2',
+        question: 'Which one is a NEED, not a want?',
+        options: [
+          'New iPhone',
+          'Branded shoes',
+          'Monthly groceries',
+          'Netflix subscription',
+        ],
+        correct: 2,
+        explanation: 'Monthly groceries are essential for survival - that\'s a NEED. The others are wants (nice to have but not necessary).',
+      },
+      {
+        id: 'q3',
+        question: 'If you earn ₹30,000 and spend ₹22,000, how much do you save?',
+        options: ['₹8,000', '₹52,000', '₹22,000', '₹30,000'],
+        correct: 0,
+        explanation: 'Savings = Income - Expenses = ₹30,000 - ₹22,000 = ₹8,000',
+      },
+    ],
+    xp: 30,
+  },
+  {
+    id: 'budgeting-quiz',
+    moduleId: 'budgeting-saving',
+    title: 'Budgeting & Saving Quiz',
+    questions: [
+      {
+        id: 'q1',
+        question: 'In the 50-30-20 rule, what does 20% represent?',
+        options: ['Needs', 'Wants', 'Savings', 'Investments'],
+        correct: 2,
+        explanation: '50% for Needs, 30% for Wants, and 20% for Savings. This is a simple budgeting rule.',
+      },
+      {
+        id: 'q2',
+        question: 'What is the best saving habit?',
+        options: [
+          'Save whatever is left at month end',
+          'Save first, then spend',
+          'Save only when you have extra money',
+          'Don\'t save, just invest',
+        ],
+        correct: 1,
+        explanation: 'Always "Pay yourself first" - Save money as soon as you get salary, then spend the rest. This ensures you actually save!',
+      },
+    ],
+    xp: 20,
+  },
+  {
+    id: 'scams-quiz',
+    moduleId: 'banking-safety',
+    title: 'Safety & Scams Quiz',
+    questions: [
+      {
+        id: 'q1',
+        question: 'Someone promises 50% guaranteed returns in 3 months. What should you do?',
+        options: [
+          'Invest immediately',
+          'Invest half your savings',
+          'Avoid it - it\'s likely a scam',
+          'Ask friends to invest too',
+        ],
+        correct: 2,
+        explanation: 'No one can guarantee high returns in short time. This is a classic scam red flag. Stay away!',
+      },
+      {
+        id: 'q2',
+        question: 'Bank calls asking for your OTP. What should you do?',
+        options: [
+          'Share it immediately',
+          'Share only last 3 digits',
+          'Never share - banks never ask for OTP',
+          'Share after verifying caller ID',
+        ],
+        correct: 2,
+        explanation: 'Banks NEVER ask for OTP, PIN, or password. Anyone asking is a scammer. Never share!',
+      },
+    ],
+    xp: 25,
+  },
+  {
+    id: 'investing-quiz',
+    moduleId: 'investing-basics',
+    title: 'Investing Basics Quiz',
+    questions: [
+      {
+        id: 'q1',
+        question: 'What is the relationship between risk and return?',
+        options: [
+          'Higher risk = Lower return',
+          'Higher risk = Higher potential return',
+          'No relationship',
+          'Risk doesn\'t matter',
+        ],
+        correct: 1,
+        explanation: 'Higher risk investments have potential for higher returns, but also higher chance of loss. This is a fundamental investing principle.',
+      },
+      {
+        id: 'q2',
+        question: 'Should you invest your emergency fund in stocks?',
+        options: [
+          'Yes, to get higher returns',
+          'Yes, but only blue-chip stocks',
+          'No, keep it in safe, liquid form',
+          'Yes, but only 50%',
+        ],
+        correct: 2,
+        explanation: 'Emergency fund should be easily accessible and safe. Stocks can go down when you need money urgently. Keep emergency fund in savings account or liquid fund.',
+      },
+    ],
+    xp: 25,
+  },
+  {
+    id: 'stocks-quiz',
+    moduleId: 'stock-market',
+    title: 'Stock Market Quiz',
+    questions: [
+      {
+        id: 'q1',
+        question: 'What is a stock?',
+        options: [
+          'A loan to company',
+          'A small ownership in a company',
+          'A government bond',
+          'A type of savings account',
+        ],
+        correct: 1,
+        explanation: 'When you buy a stock, you own a small piece of that company. You become a shareholder!',
+      },
+      {
+        id: 'q2',
+        question: 'Stock price dropped 10% today. What should a long-term investor do?',
+        options: [
+          'Panic and sell immediately',
+          'Buy more if company fundamentals are good',
+          'Check price every 5 minutes',
+          'Borrow money to buy more',
+        ],
+        correct: 1,
+        explanation: 'Short-term price drops are normal. If company is fundamentally strong, it can be a buying opportunity for long-term investors. Never panic sell!',
+      },
+    ],
+    xp: 25,
+  },
+  {
+    id: 'mutual-funds-quiz',
+    moduleId: 'mutual-funds',
+    title: 'Mutual Funds Quiz',
+    questions: [
+      {
+        id: 'q1',
+        question: 'What is the main advantage of mutual funds for beginners?',
+        options: [
+          'Guaranteed returns',
+          'No risk involved',
+          'Professional management and diversification',
+          'Can make you rich in 1 month',
+        ],
+        correct: 2,
+        explanation: 'Mutual funds are managed by experts and invest in many stocks (diversification), making them good for beginners. But they still have risk!',
+      },
+      {
+        id: 'q2',
+        question: 'What is SIP?',
+        options: [
+          'Investing lump sum once',
+          'Investing fixed amount regularly',
+          'A type of stock',
+          'A government scheme',
+        ],
+        correct: 1,
+        explanation: 'SIP (Systematic Investment Plan) means investing a fixed amount regularly (like ₹1,000 every month). It builds discipline and averages out market ups and downs.',
+      },
+    ],
+    xp: 25,
+  },
+  {
+    id: 'crypto-quiz',
+    moduleId: 'crypto-risks',
+    title: 'Crypto Awareness Quiz',
+    questions: [
+      {
+        id: 'q1',
+        question: 'What percentage of your savings should a beginner invest in crypto?',
+        options: [
+          '50-60%',
+          '30-40%',
+          'Only 2-5% or none',
+          '100%',
+        ],
+        correct: 2,
+        explanation: 'Crypto is extremely risky. Beginners should either avoid it or invest only 2-5% of savings - money they can afford to lose completely.',
+      },
+      {
+        id: 'q2',
+        question: 'Someone says "Join my Telegram group, I\'ll give you crypto tips for guaranteed profit". What is this?',
+        options: [
+          'Great opportunity',
+          'Pump and dump scam',
+          'Legitimate investment advice',
+          'Good for beginners',
+        ],
+        correct: 1,
+        explanation: 'This is a classic pump & dump scam. They pump the price by getting people to buy, then dump (sell) their holdings, leaving you with losses.',
+      },
+    ],
+    xp: 30,
+  },
+];

@@ -26,3 +26,6 @@
  GET /learn 200 in 33ms
  POST /api/user/progress 200 in 9930ms
  GET /learn 200 in 41ms
+ GET /favicon.ico 200 in 4ms
+ GET /learn 200 in 22ms
+ GET /favicon.ico 200 in 8ms

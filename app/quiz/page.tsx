@@ -23,6 +23,7 @@ export default function Quiz() {
   };
 
   const nextQuestion = () => {
+    if (!activeQuiz) return;
     if (currentQ < activeQuiz.questions.length - 1) {
       setCurrentQ(currentQ + 1);
     } else {

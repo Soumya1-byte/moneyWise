@@ -12,3 +12,5 @@
  ○ Compiling / ...
  ✓ Compiled / in 2.9s (1385 modules)
  GET / 200 in 3098ms
+ ✓ Compiled /learn in 344ms (1406 modules)
+ GET /learn 200 in 437ms

@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     await user.save();
 
     return NextResponse.json({ goals: user.goals });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to add goal' }, { status: 500 });
   }
 }
@@ -44,7 +44,7 @@ export async function GET(req: Request) {
     }
 
     return NextResponse.json({ goals: user.goals });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to fetch goals' }, { status: 500 });
   }
 }

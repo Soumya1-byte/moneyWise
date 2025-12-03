@@ -42,7 +42,7 @@ export default function Quiz() {
     router.push('/dashboard');
   };
 
-  if (showResult) {
+  if (showResult && activeQuiz) {
     const correct = answers.filter((a, i) => a === activeQuiz.questions[i].correct).length;
     const total = activeQuiz.questions.length;
     return (

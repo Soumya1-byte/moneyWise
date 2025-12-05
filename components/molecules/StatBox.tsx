@@ -1,83 +1,100 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Card from '@/components/atoms/Card';
-import IconWrapper from '@/components/atoms/IconWrapper';
-import { useAnimatedCounter } from '@/lib/hooks/useAnimatedCounter';
 import { cn } from '@/lib/utils/cn';
 
 interface StatBoxProps {
-  icon: string;
   label: string;
-  value: number;
-  suffix?: string;
-  trend?: 'up' | 'down';
-  trendValue?: string;
-  className?: string;
-  variant?: 'default' | 'colored' | 'glass';
+  value: string | number;
+  icon?: string;
+  trend?: { value: number; isPositive: boolean };
+  variant?: 'default' | 'gradient' | 'glass';
+  size?: 'sm' | 'md' | 'lg';
 }
 
-const StatBox = ({ 
-  icon, 
-  label, 
-  value, 
-  suffix = '', 
-  trend, 
-  trendValue, 
-  className,
-  variant = 'default'
-}: StatBoxProps) => {
-  const animatedValue = useAnimatedCounter(value, 1500);
+export default function StatBox({
+  label,
+  value,
+  icon,
+  trend,
+  variant = 'default',
+  size = 'md',
+}: StatBoxProps) {
+  const sizes = {
+    sm: 'p-4',
+    md: 'p-6',
+    lg: 'p-8',
+  };
+
+  const textSizes = {
+    sm: { label: 'text-xs', value: 'text-xl' },
+    md: { label: 'text-sm', value: 'text-2xl' },
+    lg: { label: 'text-base', value: 'text-3xl' },
+  };
 
   const variants = {
-    default: '',
-    colored: 'bg-gradient-to-br from-money-green/10 to-money-green/5 border border-money-green/20',
-    glass: 'bg-white/50 backdrop-blur-sm border border-white/40',
+    default: 'bg-white border border-cream-dark/20',
+    gradient: 'bg-gradient-to-br from-money-green/10 to-money-green/5 border border-money-green/20',
+    glass: 'bg-white/40 backdrop-blur-xl border border-white/60',
   };
 
   return (
-    <Card 
-      className={cn('relative overflow-hidden', className, variants[variant])} 
-      padding="md"
-      glowEffect={variant === 'colored'}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -4 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 25 }}
     >
-      <div className="flex items-start justify-between">
-        <div className="flex-1">
-          <p className="text-sm text-navy/60 mb-1 font-medium">{label}</p>
-          <motion.p 
-            className="text-3xl md:text-4xl font-bold text-navy font-mono"
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-          >
-            {animatedValue}{suffix}
-          </motion.p>
-          {trend && trendValue && (
+      <Card variant="default" padding={sizes[size] as any} className={variants[variant]}>
+        <div className="flex items-start justify-between mb-3">
+          {icon && (
             <motion.div
-              initial={{ opacity: 0, y: 5 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className={cn(
-                'flex items-center gap-1 mt-2 text-sm font-semibold',
-                trend === 'up' ? 'text-money-green' : 'text-red-500'
-              )}
+              className="p-2.5 bg-money-green/10 rounded-lg"
+              whileHover={{ rotate: 10, scale: 1.05 }}
             >
-              <span className="text-lg">{trend === 'up' ? '↗' : '↘'}</span>
-              <span>{trendValue}</span>
+              <Image
+                src={icon}
+                alt={label}
+                width={24}
+                height={24}
+                className="object-contain"
+              />
+            </motion.div>
+          )}
+          {trend && (
+            <motion.div
+              className={cn(
+                'text-xs font-bold px-2 py-1 rounded-full',
+                trend.isPositive
+                  ? 'bg-green-100 text-green-700'
+                  : 'bg-red-100 text-red-700'
+              )}
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+            >
+              {trend.isPositive ? '+' : ''}{trend.value}%
             </motion.div>
           )}
         </div>
-        <motion.div
-          animate={{ y: [0, -4, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <IconWrapper src={icon} alt={label} size="lg" />
-        </motion.div>
-      </div>
-      
-      <div className="absolute -right-8 -bottom-8 w-32 h-32 bg-money-green/5 rounded-full blur-2xl" />
-    </Card>
-  );
-};
 
-export default StatBox;
+        <motion.div
+          className={cn(
+            'font-mono font-bold text-money-green',
+            textSizes[size].value
+          )}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+        >
+          {value}
+        </motion.div>
+
+        <p className={cn('text-navy/70 mt-2', textSizes[size].label)}>
+          {label}
+        </p>
+      </Card>
+    </motion.div>
+  );
+}

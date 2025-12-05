@@ -59,7 +59,6 @@ const Card = ({
         damping: 20,
         duration: 0.2
       }}
-      {...props}
     >
       {children}
     </motion.div>

@@ -1,473 +1,515 @@
-# 🧩 Component Usage Guide
+# MoneyWise Frontend Redesign - Component Usage Guide
 
-Quick reference for using the new MoneyWise component library.
+## Overview
+This guide explains how to use the newly redesigned premium UI components and how to integrate PNG assets throughout the app.
 
-## 🎨 Atoms
+---
 
-### Button
+## 🎨 Component Architecture
+
+### Atoms (Base Building Blocks)
+Smallest, reusable UI elements.
+
+#### Button
 ```tsx
 import Button from '@/components/atoms/Button';
 
-// Primary button
-<Button variant="primary" size="md" onClick={handleClick}>
+<Button variant="primary" size="md">
   Click Me
 </Button>
 
-// Loading state
-<Button variant="primary" isLoading={true}>
-  Saving...
-</Button>
-
-// Ghost button
-<Button variant="ghost" size="sm">
-  Cancel
-</Button>
+// Variants: 'primary' | 'secondary' | 'ghost' | 'danger' | 'outline'
+// Sizes: 'sm' | 'md' | 'lg' | 'xl'
+// Props: isLoading, fullWidth, icon, disabled
 ```
 
-### IconWrapper
-```tsx
-import IconWrapper from '@/components/atoms/IconWrapper';
-
-// Basic usage
-<IconWrapper 
-  src="/assets/money.png" 
-  alt="Money icon" 
-  size="md" 
-/>
-
-// Without animation
-<IconWrapper 
-  src="/assets/shield.png" 
-  alt="Shield" 
-  size="lg"
-  animate={false}
-/>
-```
-
-### Card
+#### Card
 ```tsx
 import Card from '@/components/atoms/Card';
 
-// Default card
-<Card>
-  <h3>Title</h3>
-  <p>Content</p>
+<Card variant="default" padding="md" hover glowEffect>
+  Content here
 </Card>
 
-// Glass morphism
-<Card variant="glass" padding="lg">
-  Premium content
-</Card>
-
-// Gradient card
-<Card variant="gradient">
-  Highlighted content
-</Card>
-
-// No hover effect
-<Card hover={false}>
-  Static card
-</Card>
+// Variants: 'default' | 'glass' | 'gradient' | 'elevated' | 'minimal'
+// Padding: 'sm' | 'md' | 'lg' | 'xl'
 ```
 
-### Input
+#### Input
 ```tsx
 import Input from '@/components/atoms/Input';
 
-// With label
 <Input 
-  label="Email" 
-  type="email" 
-  placeholder="your@email.com"
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
+  label="Email"
+  type="email"
+  variant="default"
+  error="Error message"
+  icon={<YourIcon />}
 />
 
-// With error
-<Input 
-  label="Password" 
-  type="password"
-  error="Password is required"
-/>
+// Variants: 'default' | 'minimal'
 ```
 
-### Badge
+#### IconWrapper
 ```tsx
-import Badge from '@/components/atoms/Badge';
+import IconWrapper from '@/components/atoms/IconWrapper';
 
-<Badge variant="success">Completed</Badge>
-<Badge variant="warning">In Progress</Badge>
-<Badge variant="info" size="sm">New</Badge>
+<IconWrapper 
+  src="/assets/check.png" 
+  alt="Check"
+  size="md"
+  animate={true}
+  glow={true}
+  colorOverlay="#00C46A"
+/>
+
+// Sizes: 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
 ```
 
-## 🧬 Molecules
-
-### ProgressBar
+#### Chip
 ```tsx
-import ProgressBar from '@/components/molecules/ProgressBar';
+import Chip from '@/components/atoms/Chip';
 
-<ProgressBar 
-  value={75} 
-  max={100} 
-  label="Course Progress"
-  color="green"
-/>
+<Chip variant="primary" size="md" onClose={() => {}}>
+  Tag
+</Chip>
 
-// Without percentage
-<ProgressBar 
-  value={3} 
-  max={5} 
-  label="3/5 lessons"
-  showPercentage={false}
-/>
+// Variants: 'default' | 'success' | 'warning' | 'info' | 'primary'
 ```
 
-### StatBox
+#### Tooltip
 ```tsx
-import StatBox from '@/components/molecules/StatBox';
+import Tooltip from '@/components/atoms/Tooltip';
 
-<StatBox
-  icon="/assets/level.png"
-  label="Your Level"
-  value={5}
-  trend="up"
-  trendValue="+2 this week"
-/>
+<Tooltip content="Help text" side="top">
+  <button>Hover me</button>
+</Tooltip>
 
-// Without trend
-<StatBox
-  icon="/assets/xp.png"
-  label="Total XP"
-  value={1250}
-  suffix=" XP"
-/>
+// Sides: 'top' | 'bottom' | 'left' | 'right'
 ```
 
-### LessonCard
+#### GlassCard
+```tsx
+import GlassCard from '@/components/atoms/GlassCard';
+
+<GlassCard padding="md" hover>
+  Frosted glass effect
+</GlassCard>
+```
+
+#### Skeleton
+```tsx
+import Skeleton from '@/components/atoms/Skeleton';
+
+<Skeleton count={3} />
+<Skeleton circle className="h-12 w-12" />
+```
+
+---
+
+### Molecules (Composed Components)
+
+#### LessonCard
 ```tsx
 import LessonCard from '@/components/molecules/LessonCard';
 
 <LessonCard
-  id="money-basics"
-  title="Money Basics"
-  description="Learn the fundamentals of money management"
-  icon="/assets/money-basics.png"
-  difficulty="Beginner"
-  xpReward={50}
-  progress={3}
-  totalLessons={5}
-/>
-
-// Locked lesson
-<LessonCard
-  id="advanced-investing"
-  title="Advanced Investing"
-  description="Complex investment strategies"
-  icon="/assets/investing.png"
-  difficulty="Advanced"
-  xpReward={200}
-  progress={0}
-  totalLessons={8}
-  isLocked={true}
+  id="lesson-1"
+  title="Introduction to Budgeting"
+  description="Learn the basics of personal budgeting"
+  difficulty="beginner"
+  xpReward={100}
+  duration={15}
+  icon="/assets/budgeting.png"
+  progress={50}
+  isCompleted={false}
+  onClick={() => router.push('/learn/lesson-1')}
 />
 ```
 
-### QuizCard
+#### QuizCard
 ```tsx
 import QuizCard from '@/components/molecules/QuizCard';
 
 <QuizCard
   id="quiz-1"
-  title="Money Basics Quiz"
+  title="Banking Basics Quiz"
   description="Test your knowledge"
+  questionCount={10}
+  difficulty="intermediate"
+  xpReward={150}
+  timeLimit={20}
   icon="/assets/quiz.png"
-  questions={10}
-  xpReward={100}
-/>
-
-// Completed quiz
-<QuizCard
-  id="quiz-1"
-  title="Money Basics Quiz"
-  description="Test your knowledge"
-  icon="/assets/quiz.png"
-  questions={10}
-  xpReward={100}
-  completed={true}
+  isCompleted={true}
   score={85}
+  onClick={() => router.push('/quiz/quiz-1')}
 />
 ```
 
-### StoryCard
+#### StatBox
 ```tsx
-import StoryCard from '@/components/molecules/StoryCard';
+import StatBox from '@/components/molecules/StatBox';
 
-<StoryCard
-  title="FOMO Crypto Loss"
-  category="Crypto Warning"
-  preview="A young investor lost ₹50,000 by following crypto hype..."
-  lesson="Never invest based on social media hype"
-  onClick={() => router.push('/stories/crypto-fomo')}
+<StatBox
+  label="Total XP"
+  value={1250}
+  icon="/assets/xp.png"
+  trend={{ value: 10, isPositive: true }}
+  variant="gradient"
+  size="md"
+/>
+
+// Variants: 'default' | 'gradient' | 'glass'
+// Sizes: 'sm' | 'md' | 'lg'
+```
+
+#### XPBadge
+```tsx
+import XPBadge from '@/components/molecules/XPBadge';
+
+<XPBadge 
+  xp={250} 
+  label="XP"
+  size="md"
+  showAnimation={true}
+/>
+
+// Sizes: 'sm' | 'md' | 'lg'
+```
+
+#### AnimatedCounter
+```tsx
+import AnimatedCounter from '@/components/molecules/AnimatedCounter';
+
+<AnimatedCounter
+  from={0}
+  to={1500}
+  duration={2}
+  format="currency"
+  prefix="$"
+  showTooltip="Total earnings"
+/>
+
+// Format: 'number' | 'currency' | 'percentage'
+```
+
+---
+
+### Organisms (Complex Sections)
+
+#### DashboardHeader
+```tsx
+import DashboardHeader from '@/components/organisms/DashboardHeader';
+
+<DashboardHeader
+  userName="John Doe"
+  totalXP={2500}
+  currentLevel={5}
+  streakDays={7}
+  nextMilestone={3000}
+  onStartLearning={() => router.push('/learn')}
 />
 ```
 
-## 🎬 Animations
-
-### PageTransition
+#### LearningPath
 ```tsx
-import PageTransition from '@/components/animations/PageTransition';
+import LearningPath from '@/components/organisms/LearningPath';
 
-export default function MyPage() {
-  return (
-    <PageTransition>
-      <div>
-        Your page content
-      </div>
-    </PageTransition>
-  );
+<LearningPath
+  lessons={[
+    {
+      id: '1',
+      title: 'Budgeting 101',
+      description: 'Learn to budget',
+      difficulty: 'beginner',
+      xpReward: 100,
+      duration: 15,
+      icon: '/assets/budgeting.png',
+      progress: 0,
+      isCompleted: false,
+    },
+  ]}
+  title="Your Learning Path"
+  onLessonClick={(lessonId) => console.log(lessonId)}
+/>
+```
+
+#### BudgetPlanner
+```tsx
+import BudgetPlanner from '@/components/organisms/BudgetPlanner';
+
+<BudgetPlanner
+  categories={[
+    { id: '1', name: 'Housing', budget: 1200, spent: 1150, color: '#00C46A', icon: '/assets/budgeting.png' },
+  ]}
+  totalIncome={3500}
+  onSave={(budgets) => console.log(budgets)}
+/>
+```
+
+#### RiskChecker
+```tsx
+import RiskChecker from '@/components/organisms/RiskChecker';
+
+<RiskChecker
+  riskScore={45}
+  volatility={23.5}
+  historicalData={[
+    { month: 'Jan', volatility: 18 },
+  ]}
+/>
+```
+
+---
+
+## 🖼️ PNG Asset System
+
+### Using ImageAssets
+```tsx
+import { getAsset, assetExists } from '@/lib/utils/imageAssets';
+
+// Get asset path
+const checkIcon = getAsset('icons', 'check');
+// Returns: '/assets/check.png'
+
+// Check if asset exists
+if (assetExists('icons', 'check')) {
+  // Safe to use
 }
 ```
 
-### Animation Variants
-```tsx
-import { motion } from 'framer-motion';
-import { fadeInUp, scaleIn, staggerContainer } from '@/lib/utils/animations';
+### Asset Categories
+- **icons**: Check, shield, target, warning, lightbulb, trophy, xp, level, badge
+- **categories**: Budgeting, banking, investing, stocks, crypto, mutual funds, money basics, planning
+- **tools**: Budget planner, expense tracker, risk checker, goal planner
+- **learning**: Lesson, quiz, correct, incorrect, mistake
+- **status**: Success, error
 
-// Single element
-<motion.div 
-  variants={fadeInUp}
+### Adding New Assets
+1. Place PNG in `/public/assets/`
+2. Add mapping to `imageAssets` object in `/lib/utils/imageAssets.ts`
+3. Use via `getAsset()` function
+
+### Example: Adding a New Icon
+```tsx
+// Step 1: Place your-icon.png in /public/assets/
+
+// Step 2: Update imageAssets.ts
+export const imageAssets = {
+  icons: {
+    // ...existing
+    yourIcon: '/assets/your-icon.png',
+  },
+};
+
+// Step 3: Use in component
+<IconWrapper src={getAsset('icons', 'yourIcon')} alt="Your Icon" />
+```
+
+---
+
+## 🎯 Animation System
+
+### Pre-built Animation Variants
+```tsx
+import { staggerContainer, fadeInUp, slideUp } from '@/lib/utils/animations';
+
+// Stagger container for child animations
+<motion.div
   initial="initial"
   animate="animate"
+  variants={staggerContainer}
 >
-  Content
-</motion.div>
-
-// Staggered list
-<motion.div variants={staggerContainer} initial="initial" animate="animate">
-  {items.map((item, i) => (
-    <motion.div key={i} variants={fadeInUp}>
-      {item}
-    </motion.div>
-  ))}
+  {/* Children with fadeInUp will animate sequentially */}
+  <motion.div variants={fadeInUp}>Item 1</motion.div>
+  <motion.div variants={fadeInUp}>Item 2</motion.div>
 </motion.div>
 ```
 
-### Custom Animations
-```tsx
-import { motion } from 'framer-motion';
-import { springConfig } from '@/lib/utils/animations';
+### Common Animations Used
+- `staggerContainer`: Parent wrapper for sequential animations
+- `fadeInUp`: Fade in + slide up
+- `slideUp`: Simple slide up
+- Spring animations for interactive elements
 
-<motion.div
-  whileHover={{ scale: 1.05 }}
-  whileTap={{ scale: 0.95 }}
-  transition={springConfig}
->
-  Interactive element
-</motion.div>
+---
+
+## 🎨 Color Palette & Theme
+
+### Primary Colors
+```tsx
+// Use with Tailwind classes or inline styles
+const colors = {
+  moneyGreen: '#00C46A',
+  deepNavy: '#0A1A2F',
+  softCream: '#F8F6F0',
+  silverGrey: '#D9D9D9',
+  accentYellow: '#FFE28A',
+};
 ```
 
-## 🪝 Custom Hooks
-
-### useAnimatedCounter
+### Typography
 ```tsx
-import { useAnimatedCounter } from '@/lib/hooks/useAnimatedCounter';
+// Headings: font-heading (Poppins)
+<h1 className="text-5xl font-bold font-heading">Title</h1>
 
-function StatDisplay({ value }: { value: number }) {
-  const animatedValue = useAnimatedCounter(value, 1500);
-  
-  return <div>{animatedValue}</div>;
-}
+// Body: font-sans (Inter)
+<p className="text-base font-sans">Body text</p>
+
+// Numbers: font-mono (JetBrains Mono)
+<span className="font-mono">1,250</span>
 ```
 
-### useScrollAnimation
+---
+
+## 📱 Responsive Design
+
+All components are fully responsive using Tailwind breakpoints:
+- Mobile-first approach
+- `md:` for tablets (768px+)
+- `lg:` for desktops (1024px+)
+
+### Example
 ```tsx
-import { useRef } from 'react';
-import { motion } from 'framer-motion';
-import { useScrollAnimation } from '@/lib/hooks/useScrollAnimation';
-
-function ScrollSection() {
-  const ref = useRef(null);
-  const isVisible = useScrollAnimation(ref);
-  
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: isVisible ? 1 : 0 }}
-    >
-      Content appears on scroll
-    </motion.div>
-  );
-}
-```
-
-## 🛠️ Utility Functions
-
-### Class Name Merger
-```tsx
-import { cn } from '@/lib/utils/cn';
-
-<div className={cn(
-  'base-class',
-  isActive && 'active-class',
-  'another-class'
-)}>
-  Content
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+  {/* 1 col on mobile, 2 on tablet, 4 on desktop */}
 </div>
 ```
 
-### Number Formatting
-```tsx
-import { 
-  formatCurrency, 
-  formatNumber, 
-  formatPercentage,
-  abbreviateNumber 
-} from '@/lib/utils/formatters';
+---
 
-formatCurrency(50000)        // ₹50,000
-formatNumber(1234567)        // 12,34,567
-formatPercentage(75.5)       // 75.5%
-abbreviateNumber(1500000)    // 1.5L
-abbreviateNumber(25000000)   // 2.5Cr
-```
+## ⚡ Performance Tips
 
-## 📋 Complete Page Example
+1. **Use Skeleton for Loading States**
+   ```tsx
+   {isLoading ? <Skeleton count={3} /> : <Content />}
+   ```
+
+2. **Optimize Images**
+   - Use Next.js Image component (already done)
+   - Images are auto-optimized via `next/image`
+
+3. **Code Splitting**
+   - Components are automatically code-split in Next.js
+
+4. **Animations**
+   - Prefer transform/opacity (GPU-accelerated)
+   - Avoid animating layout properties
+   - Use `will-change` CSS for complex animations
+
+---
+
+## 🚀 Integration Checklist
+
+When using these components in new pages:
+
+- [ ] Import required components
+- [ ] Use `PageTransition` wrapper for page animations
+- [ ] Include `Navbar` at the top
+- [ ] Use `staggerContainer` + `fadeInUp` for enter animations
+- [ ] Replace any emoji/text icons with PNG via `IconWrapper`
+- [ ] Test on mobile (use responsive design)
+- [ ] Verify all assets load correctly
+- [ ] Check animations run at 60fps
+- [ ] Validate accessibility (aria labels, keyboard nav)
+
+---
+
+## 📚 Example: Complete Page Structure
 
 ```tsx
 'use client';
 
 import { motion } from 'framer-motion';
+import Navbar from '@/components/layout/Navbar';
 import PageTransition from '@/components/animations/PageTransition';
 import Card from '@/components/atoms/Card';
-import Button from '@/components/atoms/Button';
-import LessonCard from '@/components/molecules/LessonCard';
+import DashboardHeader from '@/components/organisms/DashboardHeader';
 import { staggerContainer, fadeInUp } from '@/lib/utils/animations';
 
-export default function LearningPage() {
-  const lessons = [
-    {
-      id: 'money-basics',
-      title: 'Money Basics',
-      description: 'Learn fundamentals',
-      icon: '/assets/money-basics.png',
-      difficulty: 'Beginner' as const,
-      xpReward: 50,
-      progress: 3,
-      totalLessons: 5,
-    },
-    // ... more lessons
-  ];
-
+export default function MyPage() {
   return (
     <PageTransition>
-      <div className="min-h-screen bg-gradient-to-br from-cream to-white p-8">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="max-w-7xl mx-auto"
-        >
-          <h1 className="text-4xl font-bold text-navy mb-8 font-heading">
-            Learning Modules
-          </h1>
-
+      <div className="min-h-screen bg-gradient-to-br from-cream via-cream-light to-white">
+        <Navbar />
+        
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
           <motion.div
-            className="grid md:grid-cols-2 gap-6"
-            variants={staggerContainer}
             initial="initial"
             animate="animate"
+            variants={staggerContainer}
           >
-            {lessons.map((lesson) => (
-              <motion.div key={lesson.id} variants={fadeInUp}>
-                <LessonCard {...lesson} />
-              </motion.div>
-            ))}
+            <motion.div variants={fadeInUp}>
+              <h1 className="text-5xl font-bold text-navy font-heading">
+                Page Title
+              </h1>
+            </motion.div>
+
+            <motion.div variants={fadeInUp}>
+              <Card padding="lg">
+                Your content here
+              </Card>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </PageTransition>
   );
 }
 ```
 
-## 🎨 Styling Tips
+---
 
-### Consistent Spacing
-```tsx
-// Use Tailwind spacing scale
-<div className="p-4">      // 16px
-<div className="p-6">      // 24px
-<div className="p-8">      // 32px
-<div className="gap-4">    // 16px gap
-<div className="space-y-6"> // 24px vertical spacing
+## 🔗 File Structure Reference
+
 ```
+components/
+├── atoms/
+│   ├── Button.tsx
+│   ├── Card.tsx
+│   ├── Chip.tsx
+│   ├── GlassCard.tsx
+│   ├── IconWrapper.tsx
+│   ├── Input.tsx
+│   ├── Skeleton.tsx
+│   ├── Tooltip.tsx
+│   └── ... (other atoms)
+│
+├── molecules/
+│   ├── AnimatedCounter.tsx
+│   ├── LessonCard.tsx
+│   ├── QuizCard.tsx
+│   ├── StatBox.tsx
+│   ├── XPBadge.tsx
+│   └── ... (other molecules)
+│
+└── organisms/
+    ├── BudgetPlanner.tsx
+    ├── DashboardHeader.tsx
+    ├── LearningPath.tsx
+    ├── RiskChecker.tsx
+    └── ... (other organisms)
 
-### Color Usage
-```tsx
-// Text colors
-className="text-navy"           // Primary text
-className="text-navy/60"        // Secondary text
-className="text-money-green"    // Success/primary action
-
-// Background colors
-className="bg-cream"            // Page background
-className="bg-white"            // Card background
-className="bg-money-green"      // Primary button
-
-// Gradients
-className="bg-gradient-to-br from-cream to-white"
-className="bg-gradient-to-r from-money-green to-money-green-light"
-```
-
-### Responsive Design
-```tsx
-<div className="
-  text-2xl md:text-4xl        // Responsive text
-  grid md:grid-cols-2         // Responsive grid
-  p-4 md:p-8                  // Responsive padding
-">
-```
-
-## 🚀 Performance Tips
-
-1. **Lazy load heavy components**:
-```tsx
-const HeavyComponent = dynamic(() => import('./HeavyComponent'), {
-  loading: () => <div>Loading...</div>
-});
-```
-
-2. **Memoize expensive calculations**:
-```tsx
-const expensiveValue = useMemo(() => calculateSomething(), [dependency]);
-```
-
-3. **Debounce user input**:
-```tsx
-const debouncedSearch = useMemo(
-  () => debounce((value) => search(value), 300),
-  []
-);
-```
-
-## 📱 Mobile Optimization
-
-```tsx
-// Touch-friendly sizes
-<Button size="lg">Mobile Button</Button>  // Larger tap target
-
-// Simplified mobile layouts
-<div className="grid grid-cols-1 md:grid-cols-3">
-  // Single column on mobile, 3 on desktop
-</div>
-
-// Hide on mobile
-<div className="hidden md:block">Desktop only</div>
-
-// Show only on mobile
-<div className="block md:hidden">Mobile only</div>
+lib/utils/
+├── animations.ts (animation variants)
+├── imageAssets.ts (PNG asset mapping)
+├── cn.ts (classname merger)
+└── formatters.ts (data formatting)
 ```
 
 ---
 
-**Need help?** Check `FRONTEND_REDESIGN.md` for detailed documentation.
+## 🎓 Next Steps
+
+1. **Test all components** in each page
+2. **Replace remaining emoji icons** with PNG assets
+3. **Add more teaching tools** as needed
+4. **Gather user feedback** on UX/animations
+5. **Optimize performance** based on metrics
+6. **Expand asset library** with designer
+
+---
+
+## 📞 Questions?
+
+For component-specific questions, check the component file directly - each has JSDoc comments explaining props and usage.

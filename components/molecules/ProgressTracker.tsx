@@ -5,136 +5,118 @@ import Card from '@/components/atoms/Card';
 import ProgressBar from '@/components/atoms/ProgressBar';
 import { cn } from '@/lib/utils/cn';
 
+interface Milestone {
+  step: number;
+  label: string;
+}
+
 interface ProgressTrackerProps {
   current: number;
   total: number;
-  label?: string;
-  milestones?: Array<{ step: number; label: string }>;
-  className?: string;
+  label: string;
   variant?: 'linear' | 'circular';
+  milestones?: Milestone[];
+  className?: string;
 }
 
 const ProgressTracker = ({
   current,
   total,
-  label = 'Progress',
-  milestones,
-  className,
+  label,
   variant = 'linear',
+  milestones = [],
+  className,
 }: ProgressTrackerProps) => {
-  const percentage = (current / total) * 100;
+  const percentage = Math.min((current / total) * 100, 100);
+  const getMilestoneMessage = () => {
+    if (!milestones.length) return '';
+    const currentMilestone = milestones.find((m) => current <= m.step);
+    return currentMilestone?.label || milestones[milestones.length - 1].label;
+  };
 
   if (variant === 'circular') {
-    const radius = 45;
-    const circumference = 2 * Math.PI * radius;
-    const strokeDashoffset = circumference - (percentage / 100) * circumference;
-
     return (
-      <div className={cn('flex flex-col items-center gap-4', className)}>
-        <div className="relative w-32 h-32">
-          <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
+      <Card padding="lg" className={cn('text-center', className)}>
+        <p className="text-sm text-navy/60 font-semibold mb-4">{label}</p>
+        
+        <div className="relative w-32 h-32 mx-auto mb-4">
+          <svg className="w-full h-full transform -rotate-90" viewBox="0 0 120 120">
             <circle
-              cx="50"
-              cy="50"
-              r={radius}
+              cx="60"
+              cy="60"
+              r="50"
               fill="none"
-              stroke="#f0ede5"
-              strokeWidth="4"
+              stroke="currentColor"
+              strokeWidth="8"
+              className="text-cream-dark/20"
             />
             <motion.circle
-              cx="50"
-              cy="50"
-              r={radius}
+              cx="60"
+              cy="60"
+              r="50"
               fill="none"
-              stroke="url(#progressGradient)"
-              strokeWidth="4"
-              strokeDasharray={circumference}
-              initial={{ strokeDashoffset: circumference }}
-              animate={{ strokeDashoffset }}
-              transition={{ duration: 1.5, ease: 'easeOut' }}
+              stroke="currentColor"
+              strokeWidth="8"
               strokeLinecap="round"
+              className="text-money-green"
+              strokeDasharray={314}
+              initial={{ strokeDashoffset: 314 }}
+              animate={{ strokeDashoffset: 314 - (314 * percentage) / 100 }}
+              transition={{ duration: 1, ease: 'easeOut' }}
             />
-            <defs>
-              <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00C46A" />
-                <stop offset="100%" stopColor="#00E67E" />
-              </linearGradient>
-            </defs>
           </svg>
-
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
-              <div className="text-2xl font-bold text-navy font-mono">{current}</div>
-              <div className="text-xs text-navy/60">of {total}</div>
-            </motion.div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center">
+              <p className="text-3xl font-bold text-navy font-mono">{current}</p>
+              <p className="text-xs text-navy/60">of {total}</p>
+            </div>
           </div>
         </div>
 
-        {label && <p className="text-sm font-semibold text-navy">{label}</p>}
-      </div>
+        <p className="text-xl font-bold text-navy mb-2">
+          {Math.round(percentage)}%
+        </p>
+        {getMilestoneMessage() && (
+          <p className="text-sm text-money-green font-semibold">
+            {getMilestoneMessage()}
+          </p>
+        )}
+      </Card>
     );
   }
 
   return (
-    <Card className={className} padding="lg">
-      <div className="space-y-4">
-        <div className="flex justify-between items-center">
-          <h3 className="text-lg font-semibold text-navy">{label}</h3>
-          <motion.span
-            className="text-2xl font-bold text-money-green font-mono"
-            key={current}
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-          >
-            {current}/{total}
-          </motion.span>
-        </div>
-
-        <ProgressBar value={current} max={total} showValue={false} variant="gradient" />
-
-        {milestones && (
-          <div className="mt-6 space-y-2">
-            {milestones.map((milestone, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                className={cn(
-                  'flex items-center gap-3 p-2 rounded-lg transition-colors',
-                  current >= milestone.step
-                    ? 'bg-money-green/10 border border-money-green/30'
-                    : 'bg-cream/30 border border-cream-dark/20'
-                )}
-              >
-                <div
-                  className={cn(
-                    'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold',
-                    current >= milestone.step
-                      ? 'bg-money-green text-white'
-                      : 'bg-silver text-navy/60'
-                  )}
-                >
-                  {current >= milestone.step ? '✓' : milestone.step}
-                </div>
-                <span
-                  className={cn(
-                    'text-sm font-medium',
-                    current >= milestone.step ? 'text-navy' : 'text-navy/60'
-                  )}
-                >
-                  {milestone.label}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        )}
+    <Card padding="lg" className={className}>
+      <div className="flex justify-between items-baseline mb-4">
+        <p className="text-sm text-navy/60 font-semibold">{label}</p>
+        <motion.span
+          className="text-2xl font-bold text-money-green font-mono"
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+        >
+          {current}/{total}
+        </motion.span>
       </div>
+
+      <ProgressBar
+        value={current}
+        max={total}
+        variant="animated"
+        showValue={false}
+        size="md"
+      />
+
+      {getMilestoneMessage() && (
+        <motion.p
+          initial={{ opacity: 0, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="text-sm text-money-green font-semibold mt-3"
+        >
+          {getMilestoneMessage()}
+        </motion.p>
+      )}
     </Card>
   );
 };

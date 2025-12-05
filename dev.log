@@ -2,151 +2,30 @@
 > moneywise@1.0.0 dev
 > next dev
 
+ ⚠ Port 3000 is in use, trying 3001 instead.
    ▲ Next.js 15.1.4
-   - Local:        http://localhost:3000
-   - Network:      http://10.73.19.149:3000
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.29.160:3001
    - Environments: .env.local
 
  ✓ Starting...
- ✓ Ready in 1539ms
+ ✓ Ready in 1848ms
  ○ Compiling / ...
- ✓ Compiled / in 2.9s (1385 modules)
- GET / 200 in 3098ms
- ✓ Compiled /learn in 344ms (1406 modules)
- GET /learn 200 in 437ms
- ✓ Compiled /favicon.ico in 101ms (732 modules)
- GET /favicon.ico 200 in 156ms
- GET /learn 200 in 56ms
- GET /favicon.ico 200 in 6ms
- GET /learn 200 in 29ms
- GET /favicon.ico 200 in 10ms
- ✓ Compiled /learn/[moduleId] in 140ms (1416 modules)
- GET /learn/crypto-risks 200 in 468ms
- ✓ Compiled /api/user/progress in 268ms (1503 modules)
- GET /learn 200 in 33ms
- POST /api/user/progress 200 in 9930ms
- GET /learn 200 in 41ms
- GET /favicon.ico 200 in 4ms
- GET /learn 200 in 22ms
- GET /favicon.ico 200 in 8ms
- ✓ Compiled in 229ms (693 modules)
- ✓ Compiled in 553ms (1031 modules)
- ✓ Compiled in 144ms (693 modules)
- ✓ Compiled in 171ms (693 modules)
- ✓ Compiled in 123ms (693 modules)
- ✓ Compiled in 57ms (693 modules)
- ✓ Compiled in 115ms (693 modules)
- ✓ Compiled in 125ms (693 modules)
- ✓ Compiled in 65ms (693 modules)
- ✓ Compiled in 88ms (693 modules)
- ✓ Compiled in 80ms (693 modules)
- ✓ Compiled in 81ms (693 modules)
- ✓ Compiled in 68ms (693 modules)
- ✓ Compiled in 210ms (693 modules)
- ✓ Compiled in 69ms (693 modules)
- ✓ Compiled in 61ms (693 modules)
- ✓ Compiled in 173ms (693 modules)
- ✓ Compiled in 223ms (693 modules)
- ⨯ ./app/learn/page.tsx
-Error:   [31mx[0m Unexpected token `PageTransition`. Expected jsx identifier
-    ,-[[36;1;4m/Users/soumyamishra/Desktop/untitled folder/moneywise/app/learn/page.tsx[0m:17:1]
- [2m14[0m |   const { user } = useStore();
- [2m15[0m | 
- [2m16[0m |   return (
- [2m17[0m |     <PageTransition>
-    : [35;1m     ^^^^^^^^^^^^^^[0m
- [2m18[0m |       <div className="min-h-screen bg-gradient-to-br from-cream via-cream-light to-white">
- [2m19[0m | 
- [2m20[0m |         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-    `----
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./app/learn/page.tsx
- ✓ Compiled in 635ms (1417 modules)
- ✓ Compiled in 283ms (697 modules)
- ✓ Compiled in 397ms (697 modules)
- ✓ Compiled in 257ms (697 modules)
- ✓ Compiled in 95ms (697 modules)
- ✓ Compiled in 314ms (697 modules)
- ✓ Compiled in 81ms (697 modules)
- ✓ Compiled in 460ms (1417 modules)
- ✓ Compiled in 102ms (697 modules)
- ✓ Compiled in 145ms (697 modules)
- ✓ Compiled in 222ms (1417 modules)
- ✓ Compiled in 89ms (697 modules)
- ✓ Compiled in 92ms (697 modules)
- ✓ Compiled in 177ms (1417 modules)
- ✓ Compiled in 88ms (697 modules)
- ✓ Compiled in 63ms (697 modules)
- ✓ Compiled in 349ms (1417 modules)
- ✓ Compiled in 351ms (1418 modules)
- ✓ Compiled in 585ms (1418 modules)
- ✓ Compiled in 125ms (697 modules)
- ✓ Compiled in 70ms (697 modules)
- ✓ Compiled in 131ms (697 modules)
- ✓ Compiled in 49ms (697 modules)
- ✓ Compiled in 121ms (697 modules)
- ✓ Compiled in 75ms (697 modules)
- ✓ Compiled in 124ms (697 modules)
- ✓ Compiled in 62ms (697 modules)
- ✓ Compiled in 55ms (697 modules)
- ✓ Compiled in 42ms (697 modules)
- ✓ Compiled in 114ms (697 modules)
- ✓ Compiled in 72ms (697 modules)
- ✓ Compiled in 57ms (697 modules)
- ✓ Compiled in 86ms (697 modules)
- ✓ Compiled in 293ms (1417 modules)
- ✓ Compiled in 123ms (697 modules)
- ✓ Compiled in 71ms (697 modules)
- ✓ Compiled in 77ms (697 modules)
- ✓ Compiled in 107ms (697 modules)
- ✓ Compiled in 106ms (697 modules)
- ✓ Compiled in 96ms (697 modules)
- ✓ Compiled in 136ms (697 modules)
- ✓ Compiled in 85ms (697 modules)
- ✓ Compiled in 84ms (697 modules)
- ✓ Compiled in 125ms (697 modules)
- ✓ Compiled in 66ms (697 modules)
- ✓ Compiled in 408ms (697 modules)
- ✓ Compiled in 295ms (1419 modules)
- ✓ Compiled in 145ms (698 modules)
-   Reload env: .env.local
- ✓ Compiled in 137ms (1405 modules)
-   Reload env: .env.local
- ✓ Compiled in 110ms (1405 modules)
- ✓ Compiled in 227ms (698 modules)
- ✓ Compiled in 284ms (1419 modules)
- ✓ Compiled in 94ms (698 modules)
- ✓ Compiled in 190ms (1419 modules)
- ✓ Compiled in 182ms (1419 modules)
- ✓ Compiled in 89ms (698 modules)
- ✓ Compiled in 118ms (698 modules)
- ✓ Compiled in 132ms (698 modules)
- ✓ Compiled in 110ms (698 modules)
- ✓ Compiled in 91ms (698 modules)
- ✓ Compiled in 83ms (698 modules)
- ✓ Compiled in 344ms (1419 modules)
- ✓ Compiled in 104ms (698 modules)
- ✓ Compiled in 106ms (698 modules)
- ✓ Compiled in 368ms (1419 modules)
- ✓ Compiled in 202ms (1419 modules)
- ✓ Compiled in 135ms (1419 modules)
- ✓ Compiled in 239ms (1419 modules)
- ✓ Compiled in 118ms (698 modules)
- ✓ Compiled in 364ms (1419 modules)
- ✓ Compiled in 108ms (698 modules)
- ✓ Compiled in 80ms (698 modules)
- ✓ Compiled / in 373ms (728 modules)
- ✓ Compiled /_not-found in 253ms (1416 modules)
- ○ Compiling /_error ...
- ✓ Compiled /_error in 732ms (1658 modules)
- GET / 404 in 1907ms
- GET / 404 in 62ms
- GET /_next/static/css/app/layout.css?v=1764917026646 404 in 9ms
- GET /_next/static/chunks/main-app.js?v=1764917026646 404 in 15ms
- GET /_next/static/chunks/app-pages-internals.js 404 in 12ms
- ✓ Compiled /favicon.ico in 137ms (789 modules)
- GET /favicon.ico 200 in 182ms
+ ✓ Compiled / in 1039ms (1362 modules)
+ GET / 200 in 1249ms
+ ⨯ The requested resource "/assets/check.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ⨯ The requested resource "/assets/shield.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ⨯ The requested resource "/assets/target.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ✓ Compiled /api/auth/login in 330ms (1464 modules)
+ POST /api/auth/login 401 in 1955ms
+ POST /api/auth/login 401 in 61ms
+ GET / 200 in 135ms
+ ⨯ The requested resource "/assets/check.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ⨯ The requested resource "/assets/shield.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ⨯ The requested resource "/assets/target.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ✓ Compiled /favicon.ico in 66ms (801 modules)
+ GET /favicon.ico 200 in 96ms
+ ✓ Compiled /api/auth/register in 128ms (1468 modules)
+ POST /api/auth/register 200 in 362ms
+ ✓ Compiled /onboarding in 135ms (1477 modules)
+ GET /onboarding 200 in 170ms

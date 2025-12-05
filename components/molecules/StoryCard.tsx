@@ -31,9 +31,11 @@ const StoryCard = ({ title, category, preview, lesson, className, onClick }: Sto
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
-          <Badge variant="warning" size="sm" className="mb-4">
-            {category}
-          </Badge>
+          <div className="mb-4">
+            <Badge variant="warning" size="sm">
+              {category}
+            </Badge>
+          </div>
           
           <h3 className="text-lg md:text-xl font-bold text-navy mb-3 group-hover:text-money-green transition-colors duration-200 line-clamp-2">
             {title}

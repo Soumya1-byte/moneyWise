@@ -68,14 +68,15 @@ const RiskMeter = ({
 
         <p className="text-navy/70 mb-4 text-sm">{description}</p>
 
-        <ProgressBar
-          value={percentage}
-          max={100}
-          variant="gradient"
-          showValue={true}
-          size="md"
-          className="mb-4"
-        />
+        <div className="mb-4">
+          <ProgressBar
+            value={percentage}
+            max={100}
+            variant="gradient"
+            showValue={true}
+            size="md"
+          />
+        </div>
 
         {recommendation && (
           <motion.div

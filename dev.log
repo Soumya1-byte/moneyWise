@@ -137,3 +137,16 @@ Import trace for requested module:
  ✓ Compiled in 239ms (1419 modules)
  ✓ Compiled in 118ms (698 modules)
  ✓ Compiled in 364ms (1419 modules)
+ ✓ Compiled in 108ms (698 modules)
+ ✓ Compiled in 80ms (698 modules)
+ ✓ Compiled / in 373ms (728 modules)
+ ✓ Compiled /_not-found in 253ms (1416 modules)
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 732ms (1658 modules)
+ GET / 404 in 1907ms
+ GET / 404 in 62ms
+ GET /_next/static/css/app/layout.css?v=1764917026646 404 in 9ms
+ GET /_next/static/chunks/main-app.js?v=1764917026646 404 in 15ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 12ms
+ ✓ Compiled /favicon.ico in 137ms (789 modules)
+ GET /favicon.ico 200 in 182ms

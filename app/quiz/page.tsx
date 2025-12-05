@@ -2,24 +2,17 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/layout/Navbar';
-import Card from '@/components/atoms/Card';
-import Button from '@/components/atoms/Button';
-import ProgressBar from '@/components/atoms/ProgressBar';
-import PageTransition from '@/components/animations/PageTransition';
 import { quizzes } from '@/data/quizzes';
 import { useStore } from '@/store/useStore';
-import { staggerContainer, fadeInUp } from '@/lib/utils/animations';
 
 export default function Quiz() {
   const router = useRouter();
   const { user } = useStore();
-  const [activeQuiz, setActiveQuiz] = useState<(typeof quizzes)[0] | null>(null);
+  const [activeQuiz, setActiveQuiz] = useState<any>(null);
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [showResult, setShowResult] = useState(false);
-  const [score, setScore] = useState(0);
 
   const handleAnswer = (optionIdx: number) => {
     const newAnswers = [...answers];
@@ -28,23 +21,14 @@ export default function Quiz() {
   };
 
   const nextQuestion = () => {
-    if (!activeQuiz) return;
     if (currentQ < activeQuiz.questions.length - 1) {
       setCurrentQ(currentQ + 1);
     } else {
-      calculateScore();
       setShowResult(true);
     }
   };
 
-  const calculateScore = () => {
-    if (!activeQuiz) return;
-    const correct = answers.filter((a, i) => a === activeQuiz.questions[i].correct).length;
-    setScore(Math.round((correct / activeQuiz.questions.length) * 100));
-  };
-
   const submitQuiz = async () => {
-    if (!activeQuiz) return;
     const token = localStorage.getItem('token');
     await fetch('/api/user/progress', {
       method: 'POST',
@@ -54,326 +38,124 @@ export default function Quiz() {
     router.push('/dashboard');
   };
 
-  const resetQuiz = () => {
-    setActiveQuiz(null);
-    setCurrentQ(0);
-    setAnswers([]);
-    setShowResult(false);
-    setScore(0);
-  };
-
-  if (showResult && activeQuiz) {
+  if (showResult) {
     const correct = answers.filter((a, i) => a === activeQuiz.questions[i].correct).length;
     const total = activeQuiz.questions.length;
-
     return (
-      <PageTransition>
-        <div className="min-h-screen bg-gradient-to-br from-cream via-cream-light to-white">
-          <Navbar />
-          <div className="max-w-4xl mx-auto px-4 md:px-8 py-12 flex items-center justify-center min-h-[calc(100vh-100px)]">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="w-full"
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        <div className="max-w-4xl mx-auto px-4 py-8">
+          <div className="bg-white rounded-2xl shadow-2xl p-12 text-center">
+            <div className="text-7xl mb-6">{correct === total ? '🎉' : correct >= total/2 ? '👍' : '📚'}</div>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Quiz Complete!</h2>
+            <p className="text-3xl text-gray-700 mb-8">You scored {correct}/{total}</p>
+            <button
+              onClick={submitQuiz}
+              className="px-8 py-4 rounded-xl bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
             >
-              <Card variant="gradient" padding="xl" className="text-center">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.2 }}
-                  className="text-8xl mb-6"
-                >
-                  {score === 100 ? '🎉' : score >= 70 ? '👏' : score >= 50 ? '👍' : '💪'}
-                </motion.div>
-
-                <motion.h2
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="text-4xl md:text-5xl font-bold text-white mb-4"
-                >
-                  Quiz Complete!
-                </motion.h2>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="mb-8"
-                >
-                  <p className="text-white/90 text-lg mb-4">You scored</p>
-                  <div className="text-6xl font-bold text-white font-mono mb-4">
-                    {correct}/{total}
-                  </div>
-                  <ProgressBar
-                    value={score}
-                    max={100}
-                    variant="gradient"
-                    size="lg"
-                    showValue={true}
-                  />
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="bg-white/20 backdrop-blur-sm rounded-xl p-6 mb-8 border border-white/30"
-                >
-                  <p className="text-white/90 text-base leading-relaxed">
-                    {score === 100 && "Perfect score! You're a financial expert!"}
-                    {score >= 80 && score < 100 && "Excellent work! You have strong financial knowledge."}
-                    {score >= 60 && score < 80 && "Good job! Keep learning to improve further."}
-                    {score < 60 && "Great effort! Review the material and try again."}
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                  className="flex flex-col sm:flex-row gap-4"
-                >
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    fullWidth
-                    onClick={resetQuiz}
-                  >
-                    Try Another Quiz
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="lg"
-                    fullWidth
-                    onClick={submitQuiz}
-                  >
-                    Dashboard (+{activeQuiz.xp} XP)
-                  </Button>
-                </motion.div>
-              </Card>
-            </motion.div>
+              Continue (+{activeQuiz.xp} XP)
+            </button>
           </div>
         </div>
-      </PageTransition>
+      </div>
     );
   }
 
   if (activeQuiz) {
     const q = activeQuiz.questions[currentQ];
-    const isAnswered = answers[currentQ] !== undefined;
-    const isCorrect = isAnswered && answers[currentQ] === q.correct;
-
     return (
-      <PageTransition>
-        <div className="min-h-screen bg-gradient-to-br from-cream via-cream-light to-white">
-          <Navbar />
-          <div className="max-w-4xl mx-auto px-4 md:px-8 py-8">
-            {/* Progress Bar */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-8"
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        <div className="max-w-4xl mx-auto px-4 py-8">
+          <div className="mb-6 flex justify-between items-center">
+            <button
+              onClick={() => { setActiveQuiz(null); setCurrentQ(0); setAnswers([]); }}
+              className="px-6 py-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold transition-all"
             >
-              <div className="flex justify-between items-center mb-4">
-                <Button
-                  variant="ghost"
-                  onClick={resetQuiz}
+              ← Back
+            </button>
+            <span className="text-gray-600 font-medium">Question {currentQ + 1}/{activeQuiz.questions.length}</span>
+          </div>
+          
+          <div className="bg-white rounded-2xl shadow-2xl p-8 space-y-6">
+            <h2 className="text-2xl font-bold text-gray-900">{q.question}</h2>
+            
+            <div className="space-y-3">
+              {q.options.map((opt: string, idx: number) => (
+                <button
+                  key={idx}
+                  onClick={() => handleAnswer(idx)}
+                  className={`w-full p-5 text-left border-2 rounded-xl font-medium transition-all ${
+                    answers[currentQ] === idx 
+                      ? 'border-green-500 bg-green-50 text-green-700 shadow-md' 
+                      : 'border-gray-200 hover:border-gray-300 text-gray-700'
+                  }`}
                 >
-                  ← Back
-                </Button>
-                <span className="text-sm font-semibold text-navy/70">
-                  Question {currentQ + 1} of {activeQuiz.questions.length}
-                </span>
-              </div>
-              <ProgressBar
-                value={currentQ + 1}
-                max={activeQuiz.questions.length}
-                variant="animated"
-                showValue={false}
-              />
-            </motion.div>
-
-            {/* Question Card */}
-            <motion.div
-              key={currentQ}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Card padding="lg" className="mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-navy mb-8">
-                  {q.question}
-                </h2>
-
-                {/* Answer Options */}
-                <div className="space-y-3 mb-8">
-                  {q.options.map((opt: string, idx: number) => {
-                    const isSelected = answers[currentQ] === idx;
-                    const optionIsCorrect = idx === q.correct;
-
-                    let bgClass = 'bg-white border-2 border-cream-dark/30 hover:border-money-green/50';
-                    if (isAnswered) {
-                      if (isSelected && optionIsCorrect) {
-                        bgClass = 'bg-money-green/10 border-2 border-money-green';
-                      } else if (isSelected && !optionIsCorrect) {
-                        bgClass = 'bg-red-100/50 border-2 border-red-500';
-                      } else if (!isSelected && optionIsCorrect) {
-                        bgClass = 'bg-money-green/10 border-2 border-money-green/50';
-                      } else {
-                        bgClass = 'bg-cream/30 border-2 border-cream-dark/20';
-                      }
-                    } else if (isSelected) {
-                      bgClass = 'bg-cream/50 border-2 border-money-green';
-                    }
-
-                    return (
-                      <motion.button
-                        key={idx}
-                        onClick={() => !isAnswered && handleAnswer(idx)}
-                        disabled={isAnswered}
-                        whileHover={!isAnswered ? { scale: 1.01, x: 4 } : {}}
-                        className={`w-full p-4 text-left rounded-xl font-medium transition-all ${bgClass} disabled:cursor-default`}
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${isSelected ? 'bg-money-green border-money-green' : 'border-navy/30'}`}>
-                            {isSelected && <span className="text-white text-sm font-bold">✓</span>}
-                          </div>
-                          <span className="text-navy">{opt}</span>
-                        </div>
-                      </motion.button>
-                    );
-                  })}
+                  {opt}
+                </button>
+              ))}
+            </div>
+            
+            {answers[currentQ] !== undefined && (
+              <div className="space-y-4 pt-4">
+                <div className={`p-5 rounded-xl ${
+                  answers[currentQ] === q.correct 
+                    ? 'bg-green-50 border-2 border-green-300' 
+                    : 'bg-red-50 border-2 border-red-300'
+                }`}>
+                  <p className="font-semibold text-lg mb-2">
+                    {answers[currentQ] === q.correct ? '✅ Correct!' : '❌ Incorrect'}
+                  </p>
+                  <p className="text-gray-700">{q.explanation}</p>
                 </div>
-
-                {/* Explanation */}
-                <AnimatePresence>
-                  {isAnswered && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      className={`p-4 rounded-lg border-l-4 mb-6 ${
-                        isCorrect
-                          ? 'bg-money-green/10 border-money-green'
-                          : 'bg-red-100/50 border-red-500'
-                      }`}
-                    >
-                      <p className="font-semibold text-navy mb-2">
-                        {isCorrect ? '✅ Correct!' : '❌ Incorrect'}
-                      </p>
-                      <p className="text-navy/80 text-sm">{q.explanation}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* Next Button */}
-                {isAnswered && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    <Button
-                      onClick={nextQuestion}
-                      variant="primary"
-                      size="lg"
-                      fullWidth
-                    >
-                      {currentQ < activeQuiz.questions.length - 1 ? 'Next Question' : 'See Results'}
-                    </Button>
-                  </motion.div>
-                )}
-              </Card>
-            </motion.div>
+                <button
+                  onClick={nextQuestion}
+                  className="w-full px-8 py-4 rounded-xl bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold shadow-lg hover:shadow-xl transition-all"
+                >
+                  {currentQ < activeQuiz.questions.length - 1 ? 'Next Question' : 'See Results'}
+                </button>
+              </div>
+            )}
           </div>
         </div>
-      </PageTransition>
+      </div>
     );
   }
 
   return (
-    <PageTransition>
-      <div className="min-h-screen bg-gradient-to-br from-cream via-cream-light to-white">
-        <Navbar />
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Quizzes</h1>
+          <p className="text-gray-600 text-lg">Test your knowledge and earn XP</p>
+        </div>
         
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
-          {/* Premium Header */}
-          <motion.div
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-12"
-          >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-navy mb-3 font-heading">
-              Quizzes
-            </h1>
-            <p className="text-lg text-navy/60 font-medium max-w-2xl">
-              Test your knowledge and earn XP rewards. Challenge yourself with our carefully designed quizzes.
-            </p>
-          </motion.div>
-
-          {/* Quizzes Grid */}
-          <motion.div
-            className="grid md:grid-cols-2 gap-6"
-            variants={staggerContainer}
-            initial="initial"
-            animate="animate"
-          >
-            {quizzes.map((quiz) => {
-              const isCompleted = user?.progress?.completedQuizzes?.includes(quiz.id);
-
-              return (
-                <motion.div key={quiz.id} variants={fadeInUp}>
-                  <Card
-                    onClick={() => setActiveQuiz(quiz)}
-                    className="cursor-pointer group h-full"
-                    hover={true}
-                    glowEffect={!isCompleted}
-                  >
-                    <div className="flex items-start justify-between mb-4">
-                      <h3 className="text-xl md:text-2xl font-bold text-navy group-hover:text-money-green transition-colors duration-200 flex-1">
-                        {quiz.title}
-                      </h3>
-                      {isCompleted && (
-                        <motion.span
-                          initial={{ scale: 0, rotate: -180 }}
-                          animate={{ scale: 1, rotate: 0 }}
-                          className="text-2xl"
-                        >
-                          ✓
-                        </motion.span>
-                      )}
-                    </div>
-
-                    <p className="text-navy/70 mb-6">{`${quiz.questions.length} questions`}</p>
-
-                    <div className="flex items-center justify-between pt-4 border-t border-cream-dark/20">
-                      <div>
-                        <p className="text-sm text-navy/60 mb-1">Questions</p>
-                        <p className="text-2xl font-bold text-navy font-mono">{quiz.questions.length}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-sm text-navy/60 mb-1">Reward</p>
-                        <p className="text-2xl font-bold text-money-green font-mono">+{quiz.xp}</p>
-                      </div>
-                      <motion.div
-                        className="text-money-green text-3xl"
-                        animate={{ x: [0, 4, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      >
-                        →
-                      </motion.div>
-                    </div>
-                  </Card>
-                </motion.div>
-              );
-            })}
-          </motion.div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {quizzes.map((quiz) => {
+            const isCompleted = user?.progress?.completedQuizzes?.includes(quiz.id);
+            return (
+              <button
+                key={quiz.id}
+                onClick={() => setActiveQuiz(quiz)}
+                className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all text-left group"
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-green-600 transition-colors">
+                    {quiz.title}
+                  </h3>
+                  {isCompleted && <span className="text-3xl">✅</span>}
+                </div>
+                <p className="text-gray-600 mb-4">{quiz.questions.length} questions</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-green-600 font-semibold text-lg">+{quiz.xp} XP</span>
+                  <span className="text-gray-400">→</span>
+                </div>
+              </button>
+            );
+          })}
         </div>
       </div>
-    </PageTransition>
+    </div>
   );
 }

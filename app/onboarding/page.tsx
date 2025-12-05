@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Button from '@/components/ui/Button';
 
 export default function Onboarding() {
   const [step, setStep] = useState(1);
@@ -34,44 +33,60 @@ export default function Onboarding() {
     });
   };
 
+  const progress = (step / 4) * 100;
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center p-4">
-      <div className="max-w-2xl w-full bg-white rounded-2xl shadow-xl p-8">
-        <div className="mb-8">
-          <div className="flex justify-between mb-2">
-            {[1, 2, 3, 4].map(s => (
-              <div key={s} className={`h-2 flex-1 mx-1 rounded ${s <= step ? 'bg-green-500' : 'bg-gray-200'}`} />
-            ))}
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 px-4 py-8">
+      <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-8 space-y-6">
+        <div className="space-y-2">
+          <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full transition-all duration-500"
+              style={{ width: `${progress}%` }}
+            />
           </div>
-          <p className="text-sm text-gray-600 text-center">Step {step} of 4</p>
+          <p className="text-sm text-gray-500 text-center font-medium">Step {step} of 4</p>
         </div>
 
         {step === 1 && (
-          <div>
-            <h2 className="text-2xl font-bold mb-6">Tell us about yourself</h2>
-            <div className="space-y-4">
+          <div className="space-y-6">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Tell us about yourself</h2>
+              <p className="text-gray-500">Help us personalize your learning experience</p>
+            </div>
+            
+            <div className="space-y-6">
               <div>
-                <label className="block font-medium mb-2">Age Group</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-3">Age Group</label>
                 <div className="grid grid-cols-2 gap-3">
                   {['18-25', '26-35', '36-45', '45+'].map(age => (
                     <button
                       key={age}
                       onClick={() => setData({ ...data, ageGroup: age })}
-                      className={`p-4 border-2 rounded-lg ${data.ageGroup === age ? 'border-green-500 bg-green-50' : 'border-gray-200'}`}
+                      className={`p-4 border-2 rounded-xl font-medium transition-all ${
+                        data.ageGroup === age 
+                          ? 'border-green-500 bg-green-50 text-green-700 shadow-md' 
+                          : 'border-gray-200 hover:border-gray-300 text-gray-700'
+                      }`}
                     >
                       {age}
                     </button>
                   ))}
                 </div>
               </div>
+              
               <div>
-                <label className="block font-medium mb-2">City Type</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-3">City Type</label>
                 <div className="grid grid-cols-3 gap-3">
                   {['Tier 1', 'Tier 2', 'Tier 3'].map(city => (
                     <button
                       key={city}
                       onClick={() => setData({ ...data, cityType: city })}
-                      className={`p-4 border-2 rounded-lg ${data.cityType === city ? 'border-green-500 bg-green-50' : 'border-gray-200'}`}
+                      className={`p-4 border-2 rounded-xl font-medium transition-all ${
+                        data.cityType === city 
+                          ? 'border-green-500 bg-green-50 text-green-700 shadow-md' 
+                          : 'border-gray-200 hover:border-gray-300 text-gray-700'
+                      }`}
                     >
                       {city}
                     </button>
@@ -83,31 +98,44 @@ export default function Onboarding() {
         )}
 
         {step === 2 && (
-          <div>
-            <h2 className="text-2xl font-bold mb-6">Your Experience</h2>
-            <div className="space-y-4">
+          <div className="space-y-6">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Your Experience</h2>
+              <p className="text-gray-500">This helps us recommend the right content</p>
+            </div>
+            
+            <div className="space-y-6">
               <div>
-                <label className="block font-medium mb-2">Money Management Experience</label>
-                <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-3">Money Management Experience</label>
+                <div className="space-y-3">
                   {['Beginner', 'Intermediate', 'Advanced'].map(exp => (
                     <button
                       key={exp}
                       onClick={() => setData({ ...data, moneyExperience: exp })}
-                      className={`w-full p-4 border-2 rounded-lg text-left ${data.moneyExperience === exp ? 'border-green-500 bg-green-50' : 'border-gray-200'}`}
+                      className={`w-full p-4 border-2 rounded-xl text-left font-medium transition-all ${
+                        data.moneyExperience === exp 
+                          ? 'border-green-500 bg-green-50 text-green-700 shadow-md' 
+                          : 'border-gray-200 hover:border-gray-300 text-gray-700'
+                      }`}
                     >
                       {exp}
                     </button>
                   ))}
                 </div>
               </div>
+              
               <div>
-                <label className="block font-medium mb-2">Investing Experience</label>
-                <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-3">Investing Experience</label>
+                <div className="space-y-3">
                   {['None', 'Little', 'Moderate', 'Experienced'].map(exp => (
                     <button
                       key={exp}
                       onClick={() => setData({ ...data, investingExperience: exp })}
-                      className={`w-full p-4 border-2 rounded-lg text-left ${data.investingExperience === exp ? 'border-green-500 bg-green-50' : 'border-gray-200'}`}
+                      className={`w-full p-4 border-2 rounded-xl text-left font-medium transition-all ${
+                        data.investingExperience === exp 
+                          ? 'border-green-500 bg-green-50 text-green-700 shadow-md' 
+                          : 'border-gray-200 hover:border-gray-300 text-gray-700'
+                      }`}
                     >
                       {exp}
                     </button>
@@ -119,17 +147,32 @@ export default function Onboarding() {
         )}
 
         {step === 3 && (
-          <div>
-            <h2 className="text-2xl font-bold mb-6">What are your goals?</h2>
-            <p className="text-gray-600 mb-4">Select all that apply</p>
-            <div className="space-y-2">
+          <div className="space-y-6">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">What are your goals?</h2>
+              <p className="text-gray-500">Select all that apply</p>
+            </div>
+            
+            <div className="space-y-3">
               {['Learn basics', 'Save more', 'Understand stocks', 'Understand crypto risk', 'Build long-term wealth'].map(goal => (
                 <button
                   key={goal}
                   onClick={() => toggleGoal(goal)}
-                  className={`w-full p-4 border-2 rounded-lg text-left ${data.goals.includes(goal) ? 'border-green-500 bg-green-50' : 'border-gray-200'}`}
+                  className={`w-full p-4 border-2 rounded-xl text-left font-medium transition-all flex items-center gap-3 ${
+                    data.goals.includes(goal) 
+                      ? 'border-green-500 bg-green-50 text-green-700 shadow-md' 
+                      : 'border-gray-200 hover:border-gray-300 text-gray-700'
+                  }`}
                 >
-                  <span className="mr-2">{data.goals.includes(goal) ? '✅' : '⬜'}</span>
+                  <div className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
+                    data.goals.includes(goal) ? 'bg-green-500 border-green-500' : 'border-gray-300'
+                  }`}>
+                    {data.goals.includes(goal) && (
+                      <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
+                  </div>
                   {goal}
                 </button>
               ))}
@@ -138,26 +181,30 @@ export default function Onboarding() {
         )}
 
         {step === 4 && (
-          <div>
-            <h2 className="text-2xl font-bold mb-6">Financial Details (Optional)</h2>
-            <div className="space-y-4">
+          <div className="space-y-6">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Financial Details</h2>
+              <p className="text-gray-500">Optional - helps us provide better recommendations</p>
+            </div>
+            
+            <div className="space-y-5">
               <div>
-                <label className="block font-medium mb-2">Monthly Income (₹)</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Monthly Income (₹)</label>
                 <input
                   type="number"
                   value={data.monthlyIncome || ''}
                   onChange={(e) => setData({ ...data, monthlyIncome: Number(e.target.value) })}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg"
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
                   placeholder="25000"
                 />
               </div>
               <div>
-                <label className="block font-medium mb-2">Monthly Expenses (₹)</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Monthly Expenses (₹)</label>
                 <input
                   type="number"
                   value={data.monthlyExpenses || ''}
                   onChange={(e) => setData({ ...data, monthlyExpenses: Number(e.target.value) })}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg"
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
                   placeholder="18000"
                 />
               </div>
@@ -165,17 +212,31 @@ export default function Onboarding() {
           </div>
         )}
 
-        <div className="flex justify-between mt-8">
-          {step > 1 && (
-            <Button variant="secondary" onClick={() => setStep(step - 1)}>
+        <div className="flex justify-between pt-6 border-t">
+          {step > 1 ? (
+            <button
+              onClick={() => setStep(step - 1)}
+              className="px-6 py-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold transition-all"
+            >
               Back
-            </Button>
-          )}
-          <div className="flex-1" />
+            </button>
+          ) : <div />}
+          
           {step < 4 ? (
-            <Button onClick={() => setStep(step + 1)}>Next</Button>
+            <button
+              onClick={() => setStep(step + 1)}
+              disabled={step === 1 && (!data.ageGroup || !data.cityType)}
+              className="px-8 py-3 rounded-xl bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Next
+            </button>
           ) : (
-            <Button onClick={handleSubmit}>Get Started</Button>
+            <button
+              onClick={handleSubmit}
+              className="px-8 py-3 rounded-xl bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold shadow-lg hover:shadow-xl transition-all"
+            >
+              Get Started
+            </button>
           )}
         </div>
       </div>

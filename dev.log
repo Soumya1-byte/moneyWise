@@ -16,3 +16,9 @@
  ⨯ The requested resource "/assets/check.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
  ⨯ The requested resource "/assets/shield.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
  ⨯ The requested resource "/assets/target.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ GET / 200 in 17ms
+ ⨯ The requested resource "/assets/check.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ⨯ The requested resource "/assets/shield.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ⨯ The requested resource "/assets/target.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ✓ Compiled /favicon.ico in 105ms (350 modules)
+ GET /favicon.ico 200 in 150ms

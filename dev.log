@@ -28,11 +28,16 @@
  GET /dashboard 200 in 812ms
  ✓ Compiled /quiz in 181ms (1462 modules)
  GET /quiz 200 in 226ms
-✓ Compiled /favicon.ico in 98ms (395 modules)
- ⨯ [Error: Cannot find module '/Users/soumyamishra/Desktop/untitled folder/moneywise/.next/server/middleware-manifest.json'
-Require stack:
-- /Users/soumyamishra/Desktop/untitled folder/moneywise/node_modules/next/dist/server/next-server.js
-- /Users/soumyamishra/Desktop/untitled folder/moneywise/node_modules/next/dist/server/dev/next-dev-server.js
+ GET /dashboard 200 in 92ms
+ ✓ Compiled /favicon.ico in 250ms (1466 modules)
+ GET /favicon.ico 200 in 271ms
+ GET /api/user/profile 200 in 340ms
+ GET /dashboard 200 in 53ms
+ ✓ Compiled /stories in 176ms (1475 modules)
+ GET /stories 200 in 233ms
+ ✓ Compiled /learn in 165ms (1478 modules)
+ GET /learn 200 in 201ms
+p/untitled folder/moneywise/node_modules/next/dist/server/dev/next-dev-server.js
 - /Users/soumyamishra/Desktop/untitled folder/moneywise/node_modules/next/dist/server/next.js
 - /Users/soumyamishra/Desktop/untitled folder/moneywise/node_modules/next/dist/server/lib/start-server.js] {
   code: 'MODULE_NOT_FOUND',

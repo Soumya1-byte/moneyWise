@@ -328,3 +328,4 @@ Import trace for requested module:
  GET / 404 in 15ms
  GET / 404 in 57ms
  GET / 404 in 26ms
+ GET / 404 in 40ms

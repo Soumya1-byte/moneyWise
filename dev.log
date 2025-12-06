@@ -58,14 +58,13 @@
  GET /learn 200 in 13ms
  GET /learn/money-basics 200 in 18ms
  POST /api/user/progress 200 in 112ms
- GET /learn/money-basics 200 in 17ms
- GET /favicon.ico 200 in 4ms
- POST /api/user/progress 200 in 124ms
- GET /learn/money-basics 200 in 24ms
- GET /favicon.ico 200 in 7ms
- GET /learn 200 in 13ms
- GET /dashboard 200 in 15ms
- ✓ Compiled /api/user/profile in 80ms (815 modules)
+ GET /learn/money-basics 200 in  ✓ Compiled in 392ms (495 modules)
+ ✓ Compiled in 99ms (495 modules)
+ ✓ Compiled in 81ms (495 modules)
+ ✓ Compiled in 89ms (495 modules)
+ ✓ Compiled in 153ms (495 modules)
+ ✓ Compiled in 81ms (495 modules)
+ile in 80ms (815 modules)
  GET /api/user/profile 200 in 165ms
  GET /api/user/profile 200 in 55ms
  GET /learn 200 in 46ms
@@ -73,3 +72,15 @@
  GET /tools 200 in 262ms
  ✓ Compiled /quiz in 107ms (821 modules)
  GET /quiz 200 in 152ms
+ ✓ Compiled in 443ms (682 modules)
+ GET /dashboard 200 in 10ms
+ ✓ Compiled in 104ms (682 modules)
+ GET /dashboard 200 in 5ms
+ ✓ Compiled in 95ms (682 modules)
+ GET /dashboard 200 in 13ms
+ ✓ Compiled in 125ms (682 modules)
+ GET /dashboard 200 in 6ms
+ ✓ Compiled in 167ms (682 modules)
+ GET /dashboard 200 in 5ms
+ ✓ Compiled in 89ms (682 modules)
+ GET /dashboard 200 in 5ms

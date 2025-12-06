@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import Navbar from '@/components/layout/Navbar';
+import PremiumNavbar from '@/components/premium/PremiumNavbar';
 import { lessons } from '@/data/lessons';
 import { useStore } from '@/store/useStore';
 
@@ -10,12 +10,12 @@ export default function Learn() {
   const { user } = useStore();
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Learning Modules</h1>
-          <p className="text-gray-600 text-lg">Start from basics or jump to any topic</p>
+    <div className="min-h-screen bg-gradient-to-br from-[#E0E1DD] via-[#F8F9FA] to-[#E0E1DD]">
+      <PremiumNavbar />
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="mb-12">
+          <h1 className="text-3xl font-semibold text-gray-900 mb-2">Learning Modules</h1>
+          <p className="text-sm text-gray-500">Structured paths to financial literacy</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -24,26 +24,31 @@ export default function Learn() {
               user?.progress?.completedLessons?.includes(l.id)
             ).length;
             const total = module.lessons.length;
+            const progress = (completed/total)*100;
 
             return (
               <button
                 key={module.id}
                 onClick={() => router.push(`/learn/${module.id}`)}
-                className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all text-left group"
+                className="bg-white/50 backdrop-blur-md border border-white/10 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.05)] p-6 hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] hover:scale-[1.02] transition-all text-left"
               >
-                <div className="text-5xl mb-4">{module.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
+                <div className="mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center text-2xl">
+                    {module.icon}
+                  </div>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   {module.title}
                 </h3>
-                <p className="text-gray-600 mb-4">{module.description}</p>
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-500">{total} lessons</span>
-                  <span className="text-green-600 font-semibold">{completed}/{total} done</span>
+                <p className="text-sm text-gray-500 mb-4 line-clamp-2">{module.description}</p>
+                <div className="flex items-center justify-between text-xs mb-3">
+                  <span className="text-gray-400">{total} lessons</span>
+                  <span className="text-gray-600 font-medium">{completed}/{total}</span>
                 </div>
-                <div className="mt-3 bg-gray-200 rounded-full h-2 overflow-hidden">
+                <div className="bg-gray-100 rounded-full h-1.5 overflow-hidden">
                   <div 
-                    className="bg-green-500 h-2 rounded-full transition-all"
-                    style={{ width: `${(completed/total)*100}%` }}
+                    className="bg-[#2FCF89] h-1.5 rounded-full transition-all"
+                    style={{ width: `${progress}%` }}
                   />
                 </div>
               </button>

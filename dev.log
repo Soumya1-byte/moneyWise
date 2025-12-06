@@ -109,6 +109,7 @@ Caused by:
     Syntax Error
 
 Import trace for requested mo ⨯ ./app/page.tsx
+E<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/soumyamishra/Desktop/untitled folder/moneywise/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/soumyamishra/Desktop/untitled folder/moneywise/.next/cache/webpack/client-development/0.pack ⨯ ./app/page.tsx
 Error:   [31mx[0m Expression expected
      ,-[[36;1;4m/Users/soumyamishra/Desktop/untitled folder/moneywise/app/page.tsx[0m:144:1]
  [2m141[0m |     </div>
@@ -123,3 +124,19 @@ Caused by:
 
 Import trace for requested module:
 ./app/page.tsx
+ ⨯ ./app/page.tsx
+Error:   [31mx[0m Expression expected
+     ,-[[36;1;4m/Users/soumyamishra/Desktop/untitled folder/moneywise/app/page.tsx[0m:144:1]
+ [2m141[0m |     </div>
+ [2m142[0m |   );
+ [2m143[0m | }
+ [2m144[0m | }
+     : [35;1m^[0m
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+.tsx

@@ -12,8 +12,8 @@ export default function ModulePage() {
   const { user } = useStore();
   const [selectedLesson, setSelectedLesson] = useState<any>(null);
 
-  const module = lessons.find(m => m.id === params.moduleId);
-  if (!module) return <div>Module not found</div>;
+  const moduleData = lessons.find(m => m.id === params.moduleId);
+  if (!moduleData) return <div>Module not found</div>;
 
   const completeLesson = async (lessonId: string, xp: number) => {
     const token = localStorage.getItem('token');
@@ -69,12 +69,12 @@ export default function ModulePage() {
         </button>
         
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">{module.icon} {module.title}</h1>
-          <p className="text-gray-600 text-lg">{module.description}</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">{moduleData.icon} {moduleData.title}</h1>
+          <p className="text-gray-600 text-lg">{moduleData.description}</p>
         </div>
 
         <div className="space-y-4">
-          {module.lessons.map((lesson, idx) => {
+          {moduleData.lessons.map((lesson, idx) => {
             const isCompleted = user?.progress?.completedLessons?.includes(lesson.id);
             return (
               <button

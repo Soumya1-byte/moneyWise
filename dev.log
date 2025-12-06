@@ -164,23 +164,18 @@ Import trace for requested module:
  ✓ Compiled in 107ms (495 modules)
  ✓ Compiled in 405ms (535 modules)
  ✓ Compiled in 292ms (549 modules)
-ET /learn 200 in 57ms
- GET /quiz 200 in 21ms
- GET /tools 200 in 23ms
- ✓ Compiled /stories in 123ms (869 modules)
- GET /stories 200 in 165ms
- GET /dashboard 200 in 18ms
- ✓ Compiled in 450ms (883 modules)
- GET /dashboard 200 in 134ms
- ✓ Compiled in 139ms (883 modules)
- GET /dashboard 200 in 7ms
- ✓ Compiled in 180ms (883 modules)
- GET /dashboard 200 in 34ms
- GET /dashboard 200 in 310ms
- ✓ Compiled in 827ms (1645 modules)
- GET /dashboard 200 in 542ms
- GET /dashboard 200 in 6ms
- ✓ Compiled /_not-found in 582ms (1635 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 1209ms (362 modules)
+ GET / 200 in 1290ms
+ ✓ Compiled /api/auth/login in 304ms (945 modules)
+ ✓ Compiled /_not-found in 88ms (949 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/593e2f6c19729aa2.webpack.hot-update.json 404 in 123ms
+ POST /api/auth/login 200 in 754ms
+ GET / 200 in 22ms
+ ✓ Compiled /favicon.ico in 57ms (466 modules)
+ GET /favicon.ico 200 in 71ms
+ound in 582ms (1635 modules)
  GET /dashboard 404 in 620ms
  GET /dashboard 200 in 14ms
  GET /dashboard 200 in 36ms

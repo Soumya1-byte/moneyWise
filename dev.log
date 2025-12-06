@@ -155,9 +155,19 @@ Caused by:
 Import trace for requested module:
 ./app/page.tsx
  ○ <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/soumyamishra/Desktop/untitled folder/moneywise/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/soumyamishra/Desktop/untitled folder/moneywise/.next/cache/webpack/client-development/0.pack.gz'
- for requested module:
-./app/page.tsx
+ ✓ Compiled in 462ms (495 modules)
+
  GET /dashboard 500 in 1225ms
  GET /dashboard 500 in 308ms
  ✓ Compiled /favicon.ico in 185ms (776 modules)
  GET /favicon.ico 500 in 253ms
+ ✓ Compiled in 477ms (883 modules)
+ ✓ Compiled /_not-found in 187ms (1634 modules)
+ GET /_next/static/webpack/930a50988eeb91e8.webpack.hot-update.json 404 in 274ms
+ GET /dashboard 404 in 276ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /dashboard 200 in 24ms
+ ✓ Compiled /api/user/profile in 86ms (777 modules)
+ ✓ Compiled (863 modules)
+ GET /favicon.ico 200 in 408ms
+ GET /api/user/profile 200 in 488ms

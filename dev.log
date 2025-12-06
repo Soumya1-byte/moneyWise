@@ -171,3 +171,9 @@ Import trace for requested module:
  ✓ Compiled (863 modules)
  GET /favicon.ico 200 in 408ms
  GET /api/user/profile 200 in 488ms
+ GET /learn 200 in 57ms
+ GET /quiz 200 in 21ms
+ GET /tools 200 in 23ms
+ ✓ Compiled /stories in 123ms (869 modules)
+ GET /stories 200 in 165ms
+ GET /dashboard 200 in 18ms

@@ -12,3 +12,7 @@
  ○ Compiling / ...
  ✓ Compiled / in 2s (659 modules)
  GET / 200 in 2168ms
+ GET / 200 in 29ms
+ ⨯ The requested resource "/assets/check.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ⨯ The requested resource "/assets/shield.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ⨯ The requested resource "/assets/target.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled

@@ -22,6 +22,8 @@ export default function PremiumNavbar() {
     { href: '/tools', label: 'Tools' },
     { href: '/lab/trading-bot', label: 'Lab' },
     { href: '/sandbox', label: 'Sandbox' },
+    { href: '/sentiment', label: 'Sentiment' },
+    { href: '/health', label: 'Health' },
   ];
 
   return (

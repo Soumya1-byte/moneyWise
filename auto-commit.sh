@@ -1,30 +1,43 @@
 #!/bin/bash
 
 # MoneyWise Auto-Commit Script
-# Checks for changes and commits if any are found
+# Automatically checks for changes every minute and commits to repository
 
 echo "🚀 MoneyWise Auto-Commit Script Started"
-echo "📁 Checking directory: $(pwd)"
+echo "📁 Monitoring directory: $(pwd)"
+echo "⏰ Checking every minute..."
+echo "Press Ctrl+C to stop"
+echo ""
 
-# Check if there are any changes
-if [[ -n $(git status -s) ]]; then
-    # Get current timestamp
-    timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+# Counter for commits
+commit_count=0
 
-    # Add all changes
-    git add -A
+while true; do
+    # Check if there are any changes
+    if [[ -n $(git status -s) ]]; then
+        # Get current timestamp
+        timestamp=$(date '+%Y-%m-%d %H:%M:%S')
 
-    # Create commit message with timestamp
-    commit_message="Auto-commit: Changes detected at $timestamp"
+        # Add all changes
+        git add -A
 
-    # Commit changes
-    git commit -m "$commit_message"
+        # Create commit message with timestamp
+        commit_message="Auto-commit: Changes detected at $timestamp"
 
-    # Push to remote
-    git push origin main
+        # Commit changes
+        git commit -m "$commit_message"
 
-    # Display success message
-    echo "✅ [$timestamp] Changes committed and pushed"
-else
-    echo "ℹ️  No changes detected"
-fi
+        # Push to remote
+        git push origin main
+
+        # Increment counter
+        ((commit_count++))
+
+        # Display success message
+        echo "✅ [$timestamp] Commit #$commit_count: Changes committed and pushed"
+        echo ""
+    fi
+
+    # Wait 60 seconds (1 minute) before next check
+    sleep 60
+done

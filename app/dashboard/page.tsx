@@ -30,7 +30,7 @@ export default function Dashboard() {
     };
     if (!user) fetchUser();
     setTip(dailyTips[Math.floor(Math.random() * dailyTips.length)]);
-  }, []);
+  }, [user, router, setUser]);
 
   if (!user) return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">

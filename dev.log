@@ -158,9 +158,9 @@ Import trace for requested module:
  ✓ Compiled in 462ms (495 modules)
  ✓ Compiled in 352ms (495 modules)
  ✓ Compiled in 168ms (495 modules)
-/favicon.ico in 185ms (776 modules)
- GET /favicon.ico 500 in 253ms
- ✓ Compiled in 477ms (883 modules)
+ ✓ Compiled in 948ms (549 modules)
+ ✓ Compiled in 72ms (495 modules)
+ompiled in 477ms (883 modules)
  ✓ Compiled /_not-found in 187ms (1634 modules)
  GET /_next/static/webpack/930a50988eeb91e8.webpack.hot-update.json 404 in 274ms
  GET /dashboard 404 in 276ms
@@ -192,3 +192,8 @@ Import trace for requested module:
  GET /dashboard 200 in 36ms
  ✓ Compiled /api/user/profile in 235ms (862 modules)
  GET /api/user/profile 200 in 387ms
+ ✓ Compiled in 1390ms (1645 modules)
+ GET /dashboard 200 in 1147ms
+ ✓ Compiled (1631 modules)
+ GET /dashboard 200 in 28ms
+ GET /dashboard 200 in 5ms

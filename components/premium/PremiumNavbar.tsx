@@ -20,7 +20,8 @@ export default function PremiumNavbar() {
     { href: '/learn', label: 'Learn' },
     { href: '/quiz', label: 'Quiz' },
     { href: '/tools', label: 'Tools' },
-    { href: '/stories', label: 'Stories' },
+    { href: '/lab/trading-bot', label: 'Lab' },
+    { href: '/sandbox', label: 'Sandbox' },
   ];
 
   return (

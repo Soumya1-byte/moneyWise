@@ -64,18 +64,23 @@
  ✓ Compiled in 89ms (495 modules)
  ✓ Compiled in 153ms (495 modules)
  ✓ Compiled in 81ms (495 modules)
-ile in 80ms (815 modules)
- GET /api/user/profile 200 in 165ms
- GET /api/user/profile 200 in 55ms
- GET /learn 200 in 46ms
- ✓ Compiled /tools in 221ms (1488 modules)
- GET /tools 200 in 262ms
- ✓ Compiled /quiz in 107ms (821 modules)
- GET /quiz 200 in 152ms
- ✓ Compiled in 443ms (682 modules)
- GET /dashboard 200 in 10ms
- ✓ Compiled in 104ms (682 modules)
- GET /dashboard 200 in 5ms
+ ✓ Compiled in 128ms (495 modules)
+ ⨯ ./app/page.tsx
+Error:   [31mx[0m Expression expected
+     ,-[[36;1;4m/Users/soumyamishra/Desktop/untitled folder/moneywise/app/page.tsx[0m:144:1]
+ [2m141[0m |     </div>
+ [2m142[0m |   );
+ [2m143[0m | }
+ [2m144[0m | }
+     : [35;1m^[0m
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+5ms
  ✓ Compiled in 95ms (682 modules)
  GET /dashboard 200 in 13ms
  ✓ Compiled in 125ms (682 modules)
@@ -84,3 +89,20 @@ ile in 80ms (815 modules)
  GET /dashboard 200 in 5ms
  ✓ Compiled in 89ms (682 modules)
  GET /dashboard 200 in 5ms
+ ✓ Compiled in 463ms (1402 modules)
+ GET /dashboard 200 in 72ms
+ ⨯ ./app/page.tsx
+Error:   [31mx[0m Expression expected
+     ,-[[36;1;4m/Users/soumyamishra/Desktop/untitled folder/moneywise/app/page.tsx[0m:144:1]
+ [2m141[0m |     </div>
+ [2m142[0m |   );
+ [2m143[0m | }
+ [2m144[0m | }
+     : [35;1m^[0m
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx

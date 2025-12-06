@@ -48,47 +48,47 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50">
-      <div className="container mx-auto px-4 py-16">
+    <div className="min-h-screen bg-gradient-to-br from-[#E0E1DD] via-[#F8F9FA] to-[#E0E1DD]">
+      <div className="container mx-auto px-6 py-20">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h1 className="text-6xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div className="space-y-12">
+              <div className="space-y-6">
+                <h1 className="text-6xl font-semibold text-[#0D1B2A] tracking-tight">
                   MoneyWise
                 </h1>
-                <p className="text-2xl text-gray-700 font-light">
-                  Your journey to financial freedom starts here
+                <p className="text-xl text-gray-600 leading-relaxed">
+                  Master financial literacy through structured learning, practical tools, and real-world insights
                 </p>
               </div>
 
-              <div className="space-y-6 pt-8">
+              <div className="space-y-5">
                 {[
-                  { emoji: '🎓', text: 'Learn investing basics' },
-                  { emoji: '💰', text: 'Track expenses & budget' },
-                  { emoji: '🛡️', text: 'Avoid financial mistakes' },
+                  { text: 'Structured learning paths' },
+                  { text: 'Interactive financial tools' },
+                  { text: 'Risk-aware education' },
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-4 text-lg text-gray-700">
-                    <span className="text-3xl">{item.emoji}</span>
-                    <span>{item.text}</span>
+                  <div key={i} className="flex items-center gap-4">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#2FCF89]"></div>
+                    <span className="text-gray-700">{item.text}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="w-full max-w-md mx-auto">
-              <div className="bg-white/80 backdrop-blur-sm p-10 rounded-3xl shadow-xl border border-gray-100">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">
+              <div className="bg-white/50 backdrop-blur-md border border-white/20 p-10 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-8">
                   {isLogin ? 'Welcome back' : 'Get started'}
                 </h2>
 
                 {error && (
-                  <div className="bg-red-50 text-red-600 px-4 py-3 rounded-xl mb-6 text-sm">
+                  <div className="bg-red-50 text-red-600 px-4 py-3 rounded-xl mb-6 text-sm border border-red-100">
                     {error}
                   </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-4">
                   {!isLogin && (
                     <input
                       type="text"
@@ -96,7 +96,7 @@ export default function Home() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Name"
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
+                      className="w-full px-4 py-3 bg-white/60 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-[#2FCF89]/20 focus:border-[#2FCF89] outline-none transition"
                     />
                   )}
 
@@ -106,7 +106,7 @@ export default function Home() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="Email"
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
+                    className="w-full px-4 py-3 bg-white/60 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-[#2FCF89]/20 focus:border-[#2FCF89] outline-none transition"
                   />
 
                   <input
@@ -115,13 +115,13 @@ export default function Home() {
                     value={formData.password}
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     placeholder="Password"
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
+                    className="w-full px-4 py-3 bg-white/60 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-[#2FCF89]/20 focus:border-[#2FCF89] outline-none transition"
                   />
 
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all disabled:opacity-50"
+                    className="w-full py-3 bg-[#2FCF89] text-white font-medium rounded-xl hover:bg-[#28B879] transition-all shadow-[0_4px_12px_rgba(47,207,137,0.3)] hover:shadow-[0_6px_20px_rgba(47,207,137,0.4)] disabled:opacity-50 disabled:cursor-not-allowed text-sm"
                   >
                     {loading ? 'Loading...' : isLogin ? 'Sign in' : 'Create account'}
                   </button>
@@ -129,7 +129,7 @@ export default function Home() {
 
                 <button
                   onClick={() => setIsLogin(!isLogin)}
-                  className="w-full mt-6 text-emerald-600 hover:text-emerald-700 font-medium text-sm"
+                  className="w-full mt-6 text-gray-600 hover:text-gray-900 font-medium text-sm transition-colors"
                 >
                   {isLogin ? 'Need an account? Sign up' : 'Have an account? Sign in'}
                 </button>
@@ -140,4 +140,5 @@ export default function Home() {
       </div>
     </div>
   );
+}
 }

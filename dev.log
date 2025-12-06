@@ -157,8 +157,8 @@ Import trace for requested module:
  ○ <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/soumyamishra/Desktop/untitled folder/moneywise/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/soumyamishra/Desktop/untitled folder/moneywise/.next/cache/webpack/client-development/0.pack.gz'
  ✓ Compiled in 462ms (495 modules)
  ✓ Compiled in 352ms (495 modules)
-dashboard 500 in 308ms
- ✓ Compiled /favicon.ico in 185ms (776 modules)
+ ✓ Compiled in 168ms (495 modules)
+/favicon.ico in 185ms (776 modules)
  GET /favicon.ico 500 in 253ms
  ✓ Compiled in 477ms (883 modules)
  ✓ Compiled /_not-found in 187ms (1634 modules)
@@ -180,3 +180,15 @@ dashboard 500 in 308ms
  GET /dashboard 200 in 134ms
  ✓ Compiled in 139ms (883 modules)
  GET /dashboard 200 in 7ms
+ ✓ Compiled in 180ms (883 modules)
+ GET /dashboard 200 in 34ms
+ GET /dashboard 200 in 310ms
+ ✓ Compiled in 827ms (1645 modules)
+ GET /dashboard 200 in 542ms
+ GET /dashboard 200 in 6ms
+ ✓ Compiled /_not-found in 582ms (1635 modules)
+ GET /dashboard 404 in 620ms
+ GET /dashboard 200 in 14ms
+ GET /dashboard 200 in 36ms
+ ✓ Compiled /api/user/profile in 235ms (862 modules)
+ GET /api/user/profile 200 in 387ms

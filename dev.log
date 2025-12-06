@@ -161,11 +161,10 @@ Import trace for requested module:
  ✓ Compiled in 948ms (549 modules)
  ✓ Compiled in 72ms (495 modules)
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/soumyamishra/Desktop/untitled folder/moneywise/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/soumyamishra/Desktop/untitled folder/moneywise/.next/cache/webpack/client-development/0.pack.gz'
-(777 modules)
- ✓ Compiled (863 modules)
- GET /favicon.ico 200 in 408ms
- GET /api/user/profile 200 in 488ms
- GET /learn 200 in 57ms
+ ✓ Compiled in 107ms (495 modules)
+ ✓ Compiled in 405ms (535 modules)
+ ✓ Compiled in 292ms (549 modules)
+ET /learn 200 in 57ms
  GET /quiz 200 in 21ms
  GET /tools 200 in 23ms
  ✓ Compiled /stories in 123ms (869 modules)
@@ -193,3 +192,18 @@ Import trace for requested module:
  GET /dashboard 200 in 28ms
  GET /dashboard 200 in 5ms
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: invalid code lengths set
+ ✓ Compiled in 138ms (883 modules)
+ GET /dashboard 200 in 15ms
+ GET /dashboard 200 in 312ms
+ ✓ Compiled in 979ms (1645 modules)
+ ✓ Compiled /learn in 212ms (767 modules)
+ GET /learn 200 in 304ms
+ GET /learn 200 in 24ms
+ GET /quiz 200 in 23ms
+ GET /tools 200 in 20ms
+ ✓ Compiled /_not-found in 131ms (1640 modules)
+ GET /lab/trading-bot 404 in 165ms
+ GET /lab/trading-bot 404 in 19ms
+ GET /lab/trading-bot 404 in 20ms
+ ✓ Compiled /favicon.ico in 129ms (783 modules)
+ GET /favicon.ico 200 in 200ms

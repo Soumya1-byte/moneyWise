@@ -154,4 +154,10 @@ Caused by:
 
 Import trace for requested module:
 ./app/page.tsx
-.tsx
+ ○ <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/soumyamishra/Desktop/untitled folder/moneywise/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/soumyamishra/Desktop/untitled folder/moneywise/.next/cache/webpack/client-development/0.pack.gz'
+ for requested module:
+./app/page.tsx
+ GET /dashboard 500 in 1225ms
+ GET /dashboard 500 in 308ms
+ ✓ Compiled /favicon.ico in 185ms (776 modules)
+ GET /favicon.ico 500 in 253ms

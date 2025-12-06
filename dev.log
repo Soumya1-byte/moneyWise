@@ -72,3 +72,4 @@
  ⨯ The requested resource "/assets/shield.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
  ⨯ The requested resource "/assets/target.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
  GET /favicon.ico 200 in 2ms
+[?25h

@@ -27,3 +27,18 @@
  ⨯ The requested resource "/assets/shield.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
  ⨯ The requested resource "/assets/target.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
  GET /favicon.ico 200 in 5ms
+ GET / 200 in 27ms
+ ⨯ The requested resource "/assets/check.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ⨯ The requested resource "/assets/shield.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ⨯ The requested resource "/assets/target.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ GET /favicon.ico 200 in 4ms
+ GET / 200 in 28ms
+ ⨯ The requested resource "/assets/check.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ⨯ The requested resource "/assets/shield.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ⨯ The requested resource "/assets/target.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ GET /favicon.ico 200 in 4ms
+ GET / 200 in 20ms
+ ⨯ The requested resource "/assets/check.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ⨯ The requested resource "/assets/shield.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ⨯ The requested resource "/assets/target.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ GET /favicon.ico 200 in 3ms

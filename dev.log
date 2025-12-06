@@ -175,8 +175,9 @@ Import trace for requested module:
  GET / 200 in 22ms
  ✓ Compiled /favicon.ico in 57ms (466 modules)
  GET /favicon.ico 200 in 71ms
-ound in 582ms (1635 modules)
- GET /dashboard 404 in 620ms
+ GET / 200 in 31ms
+ GET /favicon.ico 200 in 6ms
+ in 620ms
  GET /dashboard 200 in 14ms
  GET /dashboard 200 in 36ms
  ✓ Compiled /api/user/profile in 235ms (862 modules)

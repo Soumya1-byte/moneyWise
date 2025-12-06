@@ -9,3 +9,11 @@
 
  ✓ Starting...
  ✓ Ready in 1348ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1834ms (659 modules)
+ GET / 200 in 1988ms
+ ⨯ The requested resource "/assets/check.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ⨯ The requested resource "/assets/shield.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ⨯ The requested resource "/assets/target.png" has type "image/svg+xml" but dangerouslyAllowSVG is disabled
+ ✓ Compiled /favicon.ico in 278ms (350 modules)
+ GET /favicon.ico 200 in 324ms
